@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Footer from "../../components/navigation/Footer/Footer";
 import Header from "../../components/navigation/Header";
 import { LoadingOutlined } from "@ant-design/icons";
+import { FiChevronRight } from "react-icons/fi";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -80,10 +81,10 @@ const Home = () => {
                           <span className="ml-4 text-sm text-stone-900">
                             Start your own ChainRaise!
                           </span>
-                          {/* <ChevronRightIcon
-                          className="ml-2 h-5 w-5 text-cr-primary"
-                          aria-hidden="true"
-                        /> */}
+                          <FiChevronRight
+                            className="ml-2 h-5 w-5 text-cr-primary font-bold"
+                            aria-hidden="true"
+                          />
                         </a>
                       </Link>
                     </div>
