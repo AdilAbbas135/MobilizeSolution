@@ -21,7 +21,7 @@ const SingleOffering = () => {
   useEffect(() => {
     axios
       .get(
-        `https://beta.chainraise.info/api/offers/listing/${location?.state?.id}`
+        `https://beta.chainraise.info/manage/api/offers/listing/${location?.state?.id}`
       )
       .then((result) => {
         console.log(result);

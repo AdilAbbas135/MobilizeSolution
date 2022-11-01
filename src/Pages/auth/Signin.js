@@ -28,6 +28,7 @@ const Signin = () => {
     },
   });
 
+  const TryLogin = () => {};
   useEffect(() => {}, []);
 
   return (
@@ -61,7 +62,6 @@ const Signin = () => {
                     // }
                   >
                     <FaFacebookSquare size={25} />
-                    {/* <CameraIcon size={25} round className="items-center" /> */}
                   </button>
                 </div>
                 <div className="  ">
@@ -92,7 +92,7 @@ const Signin = () => {
                 className="mt-8 space-y-6"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  //  TryLogin();
+                  TryLogin();
                 }}
               >
                 <input type="hidden" name="remember" defaultValue="true" />

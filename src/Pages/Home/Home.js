@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     document.title = "Chainraise | Home";
     axios
-      .get("https://beta.chainraise.info/api/offers/listing")
+      .get("https://beta.chainraise.info/manage/api/offers/listing")
       .then((result) => {
         setallofferings(result?.data?.data);
         setloading(false);

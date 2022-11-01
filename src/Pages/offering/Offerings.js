@@ -48,9 +48,9 @@ const Offerings = () => {
 
   const fetchOfferings = async () => {
     axios
-      .get("https://beta.chainraise.info/api/offers/listing")
+      .get("https://beta.chainraise.info/manage/api/offers/listing")
       .then((result) => {
-        console.log(result?.data?.data);
+        // console.log(result?.data?.data);
         setallofferings(result?.data?.data);
         setloading(false);
       })

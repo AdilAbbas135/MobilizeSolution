@@ -30,7 +30,7 @@ const Organization = () => {
 
   useEffect(() => {
     axios
-      .get("https://beta.chainraise.info/api/organizations/listing")
+      .get("https://beta.chainraise.info/manage/api/organizations/listing")
       .then((result) => {
         console.log(result);
         setallorganizations(result?.data?.data);
