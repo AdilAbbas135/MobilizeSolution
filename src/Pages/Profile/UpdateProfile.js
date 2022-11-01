@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { Checkbox, DatePicker, Radio, Select, Tabs } from "antd";
 import { AiFillEdit } from "react-icons/ai";
 
-const Update_Profile = () => {
+const UpdateProfile = () => {
   const { Option } = Select;
   const [DeliveryCheck, setDeliveryCheck] = useState(false);
 
-  const onChangeDeliveryCheckBox = (e: CheckboxChangeEvent) => {
+  const onChangeDeliveryCheckBox = (e) => {
     setDeliveryCheck(e.target.checked);
   };
   const members = [
@@ -125,7 +125,7 @@ const Update_Profile = () => {
                             //     : "/default_user.png"
                             // }
                             // onClick={(e) => uploadImage(1)}
-                            alt="profile-picture"
+                            alt=""
                           />
                         </div>
                       </div>
@@ -958,7 +958,10 @@ const Update_Profile = () => {
                                 <td className="p-5">{member.lastName}</td>
                                 <td className="p-5">
                                   {/* {member.id != props.organizationSingle.contactId && ( */}
-                                  <a className="text-bold text-blue-900">
+                                  <a
+                                    href="/"
+                                    className="text-bold text-blue-900"
+                                  >
                                     Edit
                                   </a>
                                   {/* )} */}
@@ -976,13 +979,16 @@ const Update_Profile = () => {
                                 </td>
                                 <td className="p-5">
                                   {/* {member.id != props.organizationSingle.contactId && ( */}
-                                  <a className="text-bold text-blue-900">
+                                  <a
+                                    href="/"
+                                    className="text-bold text-blue-900"
+                                  >
                                     Manage
                                   </a>
                                   {/* )} */}
                                 </td>
                                 <td className="p-5">
-                                  <a>
+                                  <a href="/">
                                     <AiFillEdit size={25} />
                                   </a>
                                 </td>
@@ -1008,4 +1014,4 @@ const Update_Profile = () => {
   );
 };
 
-export default Update_Profile;
+export default UpdateProfile;

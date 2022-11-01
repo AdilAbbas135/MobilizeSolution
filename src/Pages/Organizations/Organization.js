@@ -137,6 +137,7 @@ const Organization = () => {
                               state: organization,
                             });
                           }}
+                          href="/"
                         >
                           <span
                             aria-hidden="true"

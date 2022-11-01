@@ -6,11 +6,11 @@ import Faq from "./Pages/Faq/Faq";
 import Home from "./Pages/Home/Home";
 import Offerings from "./Pages/offering/Offerings";
 import Profile from "./Pages/Profile/Profile";
-import Update_Profile from "./Pages/Profile/Update_Profile";
 import Raisefunds from "./Pages/raise-funds/Raisefunds";
 import Organization from "./Pages/Organizations/Organization";
 import SingleOrganization from "./Pages/Organizations/SingleOrganization";
 import SingleOffering from "./Pages/offering/SingleOffering";
+import UpdateProfile from "./Pages/Profile/UpdateProfile";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/offerings" element={<Offerings />} />
         <Route exact path="/offerings/:name" element={<SingleOffering />} />
         <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/profile/update" element={<Update_Profile />} />
+        <Route exact path="/profile/update" element={<UpdateProfile />} />
         <Route exact path="/auth/signin" element={<Signin />} />
         <Route exact path="/auth/signup" element={<Signup />} />
         <Route exact path={"/organizations"} element={<Organization />} />
