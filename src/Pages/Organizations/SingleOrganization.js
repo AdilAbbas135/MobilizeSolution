@@ -12,7 +12,7 @@ const SingleOrganization = () => {
   const [organization, setorganization] = useState([]);
   const [offerings, setofferings] = useState([]);
   const [loading, setloading] = useState(true);
-  const [finduser, setfinduser] = useState(true);
+  const [finduser] = useState(true);
 
   useEffect(() => {
     axios
@@ -59,6 +59,7 @@ const SingleOrganization = () => {
           theme: "light",
         });
       });
+    // eslint-disable-next-line
   }, []);
 
   return (

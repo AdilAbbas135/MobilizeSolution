@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useEffect, useState } from "react";
 import Header from "../../components/navigation/Header";
 import axios from "axios";
@@ -183,6 +184,7 @@ const Organization = () => {
             <aside className="mt-36 hidden sm:col-span-4 sm:block">
               <div className="sticky top-6 space-y-4">
                 <h3 className="sr-only">Categories</h3>
+                {/* eslint-disable-next-line */}
                 <ul
                   role="list"
                   className="space-y-4 border-b pb-6 text-sm font-medium text-gray-900"
