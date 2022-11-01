@@ -1,9 +1,4 @@
-import {
-  CameraIcon,
-  EnvelopeIcon,
-  LinkIcon,
-  LockClosedIcon,
-} from "@heroicons/react/24/outline";
+import { LockClosedIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -14,7 +9,9 @@ import { signInWithGoogle } from "../../firebase";
 import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 const Signin = () => {
+  // eslint-disable-next-line
   const [email, setemail] = useState();
+  // eslint-disable-next-line
   const [password, setpassword] = useState();
 
   const { linkedInLogin } = useLinkedIn({
@@ -39,6 +36,7 @@ const Signin = () => {
             <div className="w-full max-w-md space-y-8 bg-white py-6 px-12">
               <div>
                 <Link to="/">
+                  {/* eslint-disable-next-line */}
                   <a>
                     <img
                       className="mx-auto h-12 w-auto"
@@ -146,6 +144,7 @@ const Signin = () => {
                   </div>
 
                   <div className="text-sm">
+                    {/* eslint-disable-next-line */}
                     <a
                       href="#"
                       className="font-medium text-indigo-600 hover:text-indigo-500"

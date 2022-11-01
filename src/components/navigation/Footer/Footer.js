@@ -45,6 +45,7 @@ export default function Footer() {
                   <h3 className="text-sm font-medium text-cr-primary">
                     Explore
                   </h3>
+                  {/* eslint-disable-next-line */}
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.raises.map((item) => (
                       <li
@@ -55,6 +56,7 @@ export default function Footer() {
                         }}
                       >
                         <Link to={item.href}>
+                          {/* eslint-disable-next-line */}
                           <a className="text-stone-900 hover:text-gray-600">
                             {item.name}
                           </a>
@@ -67,6 +69,7 @@ export default function Footer() {
                   <h3 className="text-sm font-medium text-cr-primary">
                     Company
                   </h3>
+                  {/* eslint-disable-next-line */}
                   <ul role="list" className="mt-6 space-y-6">
                     {footerNavigation.company.map((item) => (
                       <li key={item.name} className="text-sm">
@@ -85,10 +88,12 @@ export default function Footer() {
                 <h3 className="text-sm font-medium text-cr-primary">
                   Customer Service
                 </h3>
+                {/* eslint-disable-next-line */}
                 <ul role="list" className="mt-6 space-y-6">
                   {footerNavigation.customerService.map((item) => (
                     <li key={item.name} className="text-sm">
                       <Link to={item.href}>
+                        {/* eslint-disable-next-line */}
                         <a className="text-stone-900 hover:text-gray-600">
                           {item.name}
                         </a>

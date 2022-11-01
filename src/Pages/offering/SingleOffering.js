@@ -40,6 +40,7 @@ const SingleOffering = () => {
           theme: "light",
         });
       });
+    // eslint-disable-next-line
   }, []);
   const features = [
     {
@@ -151,6 +152,7 @@ const SingleOffering = () => {
             <main className="lg:col-span-8">
               <div className="flex flex-col">
                 <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-gray-100">
+                  {/* eslint-disable-next-line */}
                   <img
                     src={
                       singleoffering?.banner
@@ -163,7 +165,7 @@ const SingleOffering = () => {
                 </div>
 
                 {/* Product details */}
-                <div className="mx-auto mt-4 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none lg:mt-2">
+                <div className="mx-auto mt-4 w-full max-w-2xl lg:col-span-4 lg:max-w-none lg:mt-2">
                   <Tab.Group as="div">
                     <div className="border-b border-gray-200">
                       <Tab.List className="-mb-px flex space-x-8">
@@ -463,6 +465,7 @@ const SingleOffering = () => {
                       Highlights
                     </h3>
                     <div className="prose prose-sm mt-4 text-gray-500">
+                      {/* eslint-disable-next-line */}
                       <ul role="list">
                         {product.highlights.map((highlight) => (
                           <li key={highlight}>{highlight}</li>
@@ -473,11 +476,13 @@ const SingleOffering = () => {
 
                   <div className="mt-10 border-t border-gray-200 pt-10">
                     <h3 className="text-sm font-medium text-gray-900">Share</h3>
+                    {/* eslint-disable-next-line */}
                     <ul
                       role="list"
                       className="mt-4 flex items-center space-x-6"
                     >
                       <li>
+                        {/* eslint-disable-next-line */}
                         <a
                           href="#"
                           className="flex h-6 w-6 items-center justify-center text-gray-400 hover:text-gray-500"
@@ -498,6 +503,7 @@ const SingleOffering = () => {
                         </a>
                       </li>
                       <li>
+                        {/* eslint-disable-next-line */}
                         <a
                           href="#"
                           className="flex h-6 w-6 items-center justify-center text-gray-400 hover:text-gray-500"
@@ -518,6 +524,7 @@ const SingleOffering = () => {
                         </a>
                       </li>
                       <li>
+                        {/* eslint-disable-next-line */}
                         <a
                           href="#"
                           className="flex h-6 w-6 items-center justify-center text-gray-400 hover:text-gray-500"

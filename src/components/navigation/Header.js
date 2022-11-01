@@ -69,6 +69,7 @@ const Header = () => {
                         key={index}
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-cr-secondary"
                       >
+                        {/* eslint-disable-next-line */}
                         <a className="text-gray-700">{page.name}</a>
                       </Link>
                     ))}
@@ -88,12 +89,14 @@ const Header = () => {
                         to={page.href}
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-cr-secondary"
                       >
+                        {/* eslint-disable-next-line */}
                         <a className="text-gray-700">{page.name}</a>
                       </Link>
                     ))}
                   </div>
                 </div>
-                <div className="flex flex-1 items-center justify-end hidden lg:block">
+                {/* eslint-disable-next-line */}
+                <div className="flex flex-1 items-center justify-end lg:block">
                   <div className="flex space-x-5 justify-end">
                     <Link
                       to="/auth/signin"
@@ -124,6 +127,7 @@ const Header = () => {
 
                 {/* Logo (lg-) */}
                 <Link to="/" className="lg:hidden">
+                  {/* eslint-disable-next-line */}
                   <a>
                     <span className="sr-only">Workflow</span>
                     <img

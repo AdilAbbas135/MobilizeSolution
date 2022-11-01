@@ -74,6 +74,7 @@ const Home = () => {
                   <div className="px-2">
                     <div className="flex w-full justify-center">
                       <Link to={"/raise-funds"}>
+                        {/* eslint-disable-next-line */}
                         <a className="mx-auto inline-flex items-center rounded-full border border-gray-700 bg-transparent p-1 pr-2 sm:text-base lg:text-sm xl:text-base">
                           <span className="rounded-full bg-cr-primary px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
                             Need funds?
@@ -126,6 +127,7 @@ const Home = () => {
                 Trending Raises
               </h2>
               <Link to={"/offerings"}>
+                {/* eslint-disable-next-line */}
                 <a className="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
                   View all raises<span aria-hidden="true"> &rarr;</span>
                 </a>
@@ -161,6 +163,7 @@ const Home = () => {
                       </div>
                       <div className="flex flex-1 flex-col space-y-2 p-4">
                         <h3 className="text-sm font-medium text-gray-900">
+                          {/* eslint-disable-next-line */}
                           <a
                             // href={"/offerings/" + raise.name}
                             onClick={() => {
@@ -195,6 +198,7 @@ const Home = () => {
             )}
 
             <div className="mt-8 text-sm md:hidden">
+              {/* eslint-disable-next-line */}
               <a
                 href="#"
                 className="font-medium text-indigo-600 hover:text-indigo-500"

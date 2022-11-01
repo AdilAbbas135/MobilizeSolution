@@ -127,6 +127,7 @@ const Offerings = () => {
                       className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
                     >
                       <div className="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
+                        {/* eslint-disable-next-line */}
                         <img
                           src={
                             product.banner
@@ -139,6 +140,7 @@ const Offerings = () => {
                       </div>
                       <div className="flex flex-1 flex-col space-y-2 p-4">
                         <h3 className="text-sm font-medium text-gray-900">
+                          {/* eslint-disable-next-line */}
                           <a
                             // href={"/offerings/" + product.slug}
                             onClick={() => {
@@ -175,6 +177,7 @@ const Offerings = () => {
               <div className="sticky top-6 space-y-4">
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
+                  {/* eslint-disable-next-line */}
                   <ul
                     role="list"
                     className="space-y-4 border-b pb-6 text-sm font-medium text-gray-900"
@@ -184,6 +187,7 @@ const Offerings = () => {
                         key={category.name}
                         onClick={() => handlecategoryfetch(category.name)}
                       >
+                        {/* eslint-disable-next-line */}
                         <a>{category.name}</a>
                       </li>
                     ))}
