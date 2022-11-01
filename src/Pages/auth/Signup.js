@@ -1,12 +1,10 @@
-import {
-  CameraIcon,
-  EnvelopeIcon,
-  LinkIcon,
-  LockClosedIcon,
-} from "@heroicons/react/24/outline";
+import { LockClosedIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { SiGmail } from "react-icons/si";
+import { FaFacebookSquare } from "react-icons/fa";
+import { GrLinkedin } from "react-icons/gr";
 
 const Signup = () => {
   // eslint-disable-next-line
@@ -48,7 +46,11 @@ const Signup = () => {
                     //   })
                     // }
                   >
-                    <CameraIcon size={25} round className="items-center" />
+                    <FaFacebookSquare
+                      size={25}
+                      round
+                      className="items-center"
+                    />
                   </button>
                 </div>
                 <div className="  ">
@@ -60,7 +62,7 @@ const Signup = () => {
                     //   })
                     // }
                   >
-                    <EnvelopeIcon size={25} round />
+                    <SiGmail size={25} />
                   </button>
                 </div>
                 <div className="">
@@ -72,7 +74,7 @@ const Signup = () => {
                     //   })
                     // }
                   >
-                    <LinkIcon size={25} round />
+                    <GrLinkedin size={25} />
                   </button>
                 </div>
               </div>

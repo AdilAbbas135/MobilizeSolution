@@ -32,14 +32,15 @@ const Header = () => {
       { name: "Raise", href: "/raise-funds" },
       { name: "FAQ", href: "/faq" },
       { name: "Contact Us", href: "/contact" },
+      { name: "Offerings", href: "/offerings" },
     ],
   };
 
-  const userNavigation = [
-    { name: "Offerings", href: "/offerings" },
-    { name: "Portfolio", href: "/profile" },
-    { name: "My Account", href: "/profile/update" },
-  ];
+  // const userNavigation = [
+  //   { name: "Offerings", href: "/offerings" },
+  //   { name: "Portfolio", href: "/profile" },
+  //   { name: "My Account", href: "/profile/update" },
+  // ];
 
   return (
     <>
@@ -81,18 +82,18 @@ const Header = () => {
                     >
                       Learn
                     </a>
-                    <div className="my-auto h-8 border border-gray-300"></div>
+                    {/* <div className="my-auto h-8 border border-gray-300"></div> */}
                     {/* MENU THAT WILL APPEAR WHEN THE USER WILL BE LOGED IN */}
-                    {userNavigation.map((page, index) => (
+                    {/* {userNavigation.map((page, index) => (
                       <Link
                         key={index}
                         to={page.href}
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-cr-secondary"
                       >
-                        {/* eslint-disable-next-line */}
+                       
                         <a className="text-gray-700">{page.name}</a>
                       </Link>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
                 {/* eslint-disable-next-line */}
