@@ -13,19 +13,19 @@ const Organization = () => {
   const [loading, setloading] = useState(true);
   const [organizations, setallorganizations] = useState([]);
 
-  const sortOptions = [
-    { name: "Most Popular", href: "#", current: true },
-    { name: "Ending Soon", href: "#", current: false },
-    { name: "Newest", href: "#", current: false },
-    { name: "Minimum: Low to High", href: "#", current: false },
-    { name: "Minimum: High to Low", href: "#", current: false },
-  ];
+  // const sortOptions = [
+  //   { name: "Most Popular", href: "#", current: true },
+  //   { name: "Ending Soon", href: "#", current: false },
+  //   { name: "Newest", href: "#", current: false },
+  //   { name: "Minimum: Low to High", href: "#", current: false },
+  //   { name: "Minimum: High to Low", href: "#", current: false },
+  // ];
   const subCategories = [
-    { name: "Energy", href: "#" },
-    { name: "Fintech & Finance", href: "#" },
-    { name: "Media", href: "#" },
-    { name: "Real Estate", href: "#" },
-    { name: "Technology", href: "#" },
+    { name: "Energy", href: "/" },
+    { name: "Fintech & Finance", href: "/" },
+    { name: "Media", href: "/" },
+    { name: "Real Estate", href: "/" },
+    { name: "Technology", href: "/" },
   ];
 
   useEffect(() => {
@@ -125,7 +125,7 @@ const Organization = () => {
                     <div className=" h-22 p-10  group-hover:opacity-75 sm:aspect-none">
                       <img
                         src="/assets/logomark.png"
-                        alt="organization-image--here"
+                        alt=""
                         className="h-full w-full object-cover object-center p-2 sm:h-full sm:w-full"
                       />
                     </div>
