@@ -144,6 +144,7 @@ const Offerings = () => {
                           <a
                             // href={"/offerings/" + product.slug}
                             onClick={() => {
+                              window.scrollTo({ top: 0 });
                               navigate(`/offerings/${product?.name}`, {
                                 state: product,
                               });

@@ -7,6 +7,10 @@ module.exports = {
         "cr-primary": "#4b1dff",
         "cr-secondary": "#59c9e9",
       },
+      screens: {
+        medium: "820px",
+        small: "550px",
+      },
     },
   },
   plugins: [

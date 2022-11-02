@@ -15,8 +15,8 @@ const Contact = () => {
             <h1 className="title-font mb-4 text-2xl font-medium text-gray-900 sm:text-3xl">
               Contact Us
             </h1>
-            <p className="mx-auto text-base leading-relaxed lg:w-2/3">
-              Send Us a Message and we Will Shortly be in contactt With You
+            <p className="mx-auto text-base leading-relaxed lg:w-2/3 capitalize">
+              Send Us a Message and we Will Shortly be in contact With You
             </p>
           </div>
           <div className="mx-auto md:w-2/3 lg:w-1/2">
