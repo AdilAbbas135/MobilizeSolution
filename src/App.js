@@ -9,8 +9,9 @@ import Profile from "./Pages/Profile/Profile";
 import Raisefunds from "./Pages/raise-funds/Raisefunds";
 import Organization from "./Pages/Organizations/Organization";
 import SingleOrganization from "./Pages/Organizations/SingleOrganization";
-import SingleOffering from "./Pages/offering/SingleOffering";
+// import SingleOffering from "./Pages/offering/SingleOffering";
 import UpdateProfile from "./Pages/Profile/UpdateProfile";
+import SingleOffering2 from "./Pages/offering/SingleOffering2";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/faq" element={<Faq />} />
         <Route exact path="/offerings" element={<Offerings />} />
-        <Route exact path="/offerings/:name" element={<SingleOffering />} />
+        <Route exact path="/offerings/:name" element={<SingleOffering2 />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/profile/update" element={<UpdateProfile />} />
         <Route exact path="/auth/signin" element={<Signin />} />
