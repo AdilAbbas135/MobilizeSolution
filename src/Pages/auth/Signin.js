@@ -1,6 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { SiGmail } from "react-icons/si";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -9,13 +9,15 @@ import { signInWithGoogle } from "../../firebase";
 import { useLinkedIn } from "react-linkedin-login-oauth2";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Signin = () => {
-  const navigate = useNavigate();
   // eslint-disable-next-line
   const [email, setemail] = useState();
   // eslint-disable-next-line
   const [password, setpassword] = useState();
+  const [loading, setloading] = useState(false);
 
   const { linkedInLogin } = useLinkedIn({
     clientId: "77zu88iv7ao431",
@@ -29,6 +31,7 @@ const Signin = () => {
   });
 
   const TryLogin = () => {
+    setloading(true);
     axios
       .post("https://beta.chainraise.info/manage/api/auth/login", {
         email,
@@ -37,12 +40,14 @@ const Signin = () => {
       .then((result) => {
         console.log(result);
         if (result.data.redirect) {
+          setloading(false);
           window.location.replace(
             result?.data?.redirect + `?email=${email}&password=${password}`
           );
         }
       })
       .catch((err) => {
+        setloading(false);
         toast.error("Wrong Credentials! Try Again", {
           position: "top-center",
           autoClose: 3000,
@@ -186,8 +191,9 @@ const Signin = () => {
 
                 <div>
                   <button
+                    disabled={loading ? true : false}
                     type="submit"
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="h-10 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                       <LockClosedIcon
@@ -195,7 +201,19 @@ const Signin = () => {
                         aria-hidden="true"
                       />
                     </span>
-                    Sign in
+                    {loading ? (
+                      <Spin
+                        indicator={
+                          <LoadingOutlined
+                            className="text-white"
+                            style={{ fontSize: 20, color: "white" }}
+                            spin
+                          />
+                        }
+                      />
+                    ) : (
+                      <span>Sign in</span>
+                    )}
                   </button>
                 </div>
               </form>
