@@ -126,7 +126,7 @@ const Offerings = () => {
                       key={product.id}
                       className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
                     >
-                      <div className="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
+                      <div className="aspect-w-3 aspect-h-3 md:aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
                         {/* eslint-disable-next-line */}
                         <img
                           src={

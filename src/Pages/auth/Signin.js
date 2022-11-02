@@ -1,14 +1,17 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SiGmail } from "react-icons/si";
 import { FaFacebookSquare } from "react-icons/fa";
 import { GrLinkedin } from "react-icons/gr";
 import { signInWithGoogle } from "../../firebase";
 import { useLinkedIn } from "react-linkedin-login-oauth2";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Signin = () => {
+  const navigate = useNavigate();
   // eslint-disable-next-line
   const [email, setemail] = useState();
   // eslint-disable-next-line
@@ -25,11 +28,38 @@ const Signin = () => {
     },
   });
 
-  const TryLogin = () => {};
+  const TryLogin = () => {
+    axios
+      .post("https://beta.chainraise.info/manage/api/auth/login", {
+        email,
+        password,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.data.redirect) {
+          window.location.replace(
+            result?.data?.redirect + `?email=${email}&password=${password}`
+          );
+        }
+      })
+      .catch((err) => {
+        toast.error("Wrong Credentials! Try Again", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
+  };
   useEffect(() => {}, []);
 
   return (
     <>
+      <ToastContainer />
       <div className="min-h-screen bg-gray-100">
         <div className="py-6">
           <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
