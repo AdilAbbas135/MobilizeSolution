@@ -69,14 +69,14 @@ const SingleOffering2 = () => {
                       boxShadow:
                         "0 4px 5px -2px rgb(0 0 0 / 20%), 0 7px 10px 1px rgb(0 0 0 / 14%), 0 2px 16px 1px rgb(0 0 0 / 12%)",
                     }}
-                    className="small:flex small:items-center absolute -bottom-[7rem] md:-bottom-[5rem] medium:left-8 bg-white px-10 py-5    rounded-md"
+                    className="small:flex small:items-center absolute -bottom-[7rem] small:-bottom-[5rem] medium:left-8 bg-white px-10 py-5 rounded-md"
                   >
                     <img
                       src={singleoffering?.logo}
                       alt=""
                       className="bg-cover w-24 h-24 m-auto md:w-28 md:h-28 rounded-full"
                     />
-                    <div className="ml-4 text-center mt-2 small:mt-0">
+                    <div className="ml-4 text-center mt-2 small:mt-0 small:text-start">
                       <h1 className="text-xl font-[700] capitalize">
                         {singleoffering?.name}
                       </h1>

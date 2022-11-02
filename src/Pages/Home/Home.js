@@ -167,6 +167,7 @@ const Home = () => {
                           <a
                             // href={"/offerings/" + raise.name}
                             onClick={() => {
+                              window.scrollTo({ top: 0 });
                               navigate(`/offerings/${raise?.name}`, {
                                 state: raise,
                               });
