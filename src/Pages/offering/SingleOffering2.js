@@ -9,6 +9,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 const SingleOffering2 = () => {
   const location = useLocation();
+  console.log(location);
   const [singleoffering, setsingleoffering] = useState();
   // eslint-disable-next-line
   const [loading, setloading] = useState(true);

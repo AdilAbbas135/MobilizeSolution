@@ -8,9 +8,21 @@ const footerNavigation = {
     // { name: 'Blog', href: '/blog' },
   ],
   company: [
-    { name: "Who we are", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
-    { name: "Privacy", href: "#" },
+    {
+      name: "Who we are",
+      href: "/assets/NEW-Educational-Materials-ChainRaise-Portal-LLC-9_28_22.docx.pdf",
+      target: true,
+    },
+    {
+      name: "Terms & Conditions",
+      href: "/assets/Terms-of-Use-ChainRaise.pdf",
+      target: true,
+    },
+    {
+      name: "Privacy Policy",
+      href: "/assets/Privacy-Policy-ChainRaise-LLC-2.pdf",
+      target: true,
+    },
   ],
   customerService: [
     { name: "Contact", href: "/contact" },
@@ -76,6 +88,7 @@ export default function Footer() {
                         <a
                           href={item.href}
                           className="text-stone-900 hover:text-gray-600"
+                          target={item?.target && "_blank"}
                         >
                           {item.name}
                         </a>
@@ -92,7 +105,12 @@ export default function Footer() {
                 <ul role="list" className="mt-6 space-y-6">
                   {footerNavigation.customerService.map((item) => (
                     <li key={item.name} className="text-sm">
-                      <Link to={item.href}>
+                      <Link
+                        to={item.href}
+                        onClick={() => {
+                          window.scrollTo({ top: 0 });
+                        }}
+                      >
                         {/* eslint-disable-next-line */}
                         <a className="text-stone-900 hover:text-gray-600">
                           {item.name}
