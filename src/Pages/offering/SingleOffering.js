@@ -24,7 +24,7 @@ const SingleOffering = () => {
         `https://beta.chainraise.info/manage/api/offers/listing/${location?.state?.id}`
       )
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setsingleoffering(result?.data?.data);
         setloading(false);
       })

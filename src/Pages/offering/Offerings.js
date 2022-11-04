@@ -198,7 +198,7 @@ const Offerings = () => {
                     className="p-0"
                     defaultActiveKey={["0"]}
                     ghost
-                    expandIconPosition="right"
+                    expandIconPosition="end"
                     expandIcon={() => <PlusSmallIcon className="h-5 w-5" />}
                   >
                     <Panel

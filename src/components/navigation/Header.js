@@ -252,12 +252,19 @@ const Header = () => {
                                   </a>
                                 </div>
                                 <div className="flow-root">
-                                  <Link
+                                  {/* <Link
                                     href="/auth/signin"
                                     className="-m-2 block p-2 font-medium text-gray-900"
+                                  > */}
+
+                                  <a
+                                    href="https://beta.chainraise.info/manage/login"
+                                    target={"_blank"}
+                                    rel="noreferrer"
                                   >
                                     Sign In
-                                  </Link>
+                                  </a>
+                                  {/* </Link> */}
                                 </div>
                               </>
                             )}
@@ -270,12 +277,19 @@ const Header = () => {
                 {/* eslint-disable-next-line */}
                 <div className="hidden flex-1 items-center justify-end lg:block">
                   <div className="flex space-x-5 justify-end">
-                    <Link
+                    {/* <Link
                       to="/auth/signin"
+                      className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
+                    > */}
+                    <a
+                      href="https://beta.chainraise.info/manage/login"
+                      target={"_blank"}
+                      rel="noreferrer"
                       className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
                     >
                       Sign In
-                    </Link>
+                    </a>
+                    {/* </Link> */}
                     <Link
                       to="/auth/signup"
                       className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"

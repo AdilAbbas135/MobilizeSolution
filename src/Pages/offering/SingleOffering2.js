@@ -9,7 +9,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 const SingleOffering2 = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const [singleoffering, setsingleoffering] = useState();
   // eslint-disable-next-line
   const [loading, setloading] = useState(true);
@@ -20,7 +20,7 @@ const SingleOffering2 = () => {
         `https://beta.chainraise.info/manage/api/offers/listing/${location?.state?.id}`
       )
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setsingleoffering(result?.data?.data);
         setloading(false);
       })
@@ -57,11 +57,11 @@ const SingleOffering2 = () => {
             }}
             className="max-w-6xl m-auto rounded-md bg-white"
           >
-            <div className="relative banner w-full h-72 ">
+            <div className="relative banner w-full h-72  ">
               <img
                 src={singleoffering?.banner}
                 alt=""
-                className="bg-cover w-full h-full rounded-md"
+                className=" bg-center bg-no-repeat object-cover w-full h-full rounded-md"
               />
               <div>
                 <div className="flex justify-center mt-[10px]">
