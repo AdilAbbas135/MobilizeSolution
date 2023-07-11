@@ -31,8 +31,6 @@ const OfferingsProfile = () => {
     issuerId: session.user.userId,
   });
   const [featuredImage, setfeaturedImage] = useState();
-  const [logoImg, setlogoImg] = useState();
-  const [bannerImg, setbannerImg] = useState();
 
   const showModal = () => {
     setOpen(true);
@@ -55,8 +53,6 @@ const OfferingsProfile = () => {
 
     const data = new FormData();
     data.append("featuredImage", featuredImage);
-    data.append("logoImage", logoImg);
-    data.append("bannerImage", bannerImg);
     data.append("Name", offeringdata.Name);
     data.append("Location", offeringdata.Location);
     data.append("Priority", offeringdata.Priority);
@@ -108,20 +104,26 @@ const OfferingsProfile = () => {
   };
 
   const deleteOffering = async (id) => {
-    await toast.promise(
-      axios
-        .post("http://localhost:5000/api/offerings/deleteoffering", { id })
-        .then((result) => {
-          FetchMyProblems();
-        })
-        .catch((err) => {}),
-      {
-        pending: "Deleting Offering Please Wait",
-        success: "Offering Deleted Successfully",
-        error: "Error in Deleting offering! Try Again",
-      },
-      { autoClose: 3000, closeOnClick: true, pauseOnHover: false }
-    );
+    axios
+      .post("http://localhost:5000/api/offerings/deleteoffering", { id })
+      .then((result) => {
+        dispatch(
+          createAlert({
+            type: "success",
+            message: "Problem Deleted Successfully",
+          })
+        );
+        FetchMyProblems();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(
+          createAlert({
+            type: "error",
+            message: "Something went wrong! Try Again",
+          })
+        );
+      });
   };
   useEffect(() => {
     FetchMyProblems();
@@ -263,17 +265,6 @@ const OfferingsProfile = () => {
                             }
                           />
                         </div>
-
-                        <div>
-                          <label>Banner Image</label>
-                          <input
-                            required
-                            type="file"
-                            name="myfile"
-                            accept="image/*"
-                            onChange={(e) => setbannerImg(e.target.files[0])}
-                          />
-                        </div>
                       </dl>
                     </div>
                     <div className="hidden bg-gray-200 px-4 py-3 text-right">
@@ -371,7 +362,7 @@ const OfferingsProfile = () => {
                       <td className="py-3 px-5 flex items-center gap-x-2">
                         {/* eslint-disable-next-line */}
                         <Link
-                          to={`/offerings/${offering._id}`}
+                          to={`/problems/${offering._id}`}
                           className={`delete-btn bg-[#fff5f8] p-2 rounded-lg hover:bg-[#f1416c]`}
                         >
                           <AiFillEye
@@ -389,15 +380,15 @@ const OfferingsProfile = () => {
                           />
                         </a> */}
                         {/* eslint-disable-next-line */}
-                        <a
+                        <div
                           onClick={() => deleteOffering(offering._id)}
-                          className={`delete-btn bg-[#fff5f8] p-2 rounded-lg hover:bg-[#f1416c]`}
+                          className={`delete-btn bg-[#fff5f8] p-2 rounded-lg hover:bg-[#f1416c] cursor-pointer`}
                         >
                           <MdDelete
                             size={20}
                             className="delete-icon text-[#f1416c]"
                           />
-                        </a>
+                        </div>
                       </td>
                     </tr>
                   ))}

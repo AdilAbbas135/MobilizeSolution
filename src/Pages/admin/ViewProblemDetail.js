@@ -25,22 +25,12 @@ const ViewProblemDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = localStorage.getItem("admin-token");
-  const session = useSelector((state) => state.session.session.user);
   const [Problem, setProblem] = useState({});
   const [YesVotes, setYesVotes] = useState(0);
   const [loading, setloading] = useState(true);
   const [Priority, setPriority] = useState(Problem?.Priority);
   const [Status, setStatus] = useState(Problem?.Status);
   const [btnloading, setbtnloading] = useState(false);
-
-  // DELETE CONFIRM DIALOG
-  const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  const handleCloseConfirmModal = () => {
-    setOpenConfirmModal(false);
-  };
-  const handleOpenConfirmModal = () => {
-    setOpenConfirmModal(true);
-  };
 
   const ChangePriority = (event) => {
     setPriority(event.target.value);
@@ -303,6 +293,75 @@ const ViewProblemDetail = () => {
           </div>
         </div>
         <div className="space-y-5">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Information Of User
+            </h1>
+            <div className=" border-2 border-gray-200 bg-white rounded-md p-5">
+              <div className=" flex flex-col space-y-5">
+                {loading ? (
+                  <>
+                    <div className="flex items-center justify-between space-x-3">
+                      <div className="flex items-center space-x-1">
+                        <Skeleton variant="circular" width={45} height={45} />
+                        <Skeleton
+                          variant="text"
+                          width={100}
+                          sx={{ fontSize: "18px", lineHeight: "28px" }}
+                        />
+                      </div>
+                      <div className="buttons flex items-center space-x-2">
+                        <Skeleton
+                          variant="rectangular"
+                          width={100}
+                          height={50}
+                        />
+                        <Skeleton
+                          variant="rectangular"
+                          width={100}
+                          height={50}
+                        />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <h1 className="font-bold text-cr-primary text-lg">
+                          User Email
+                        </h1>
+                        <p className="text-lg font-bold">
+                          {Problem?.UserDetails[0]?.Email}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <h1 className="font-bold text-cr-primary text-lg">
+                          UserName
+                        </h1>
+                        <p className="text-lg font-bold">
+                          {Problem?.UserDetails[0]?.UserName}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <h1 className="font-bold text-cr-primary text-lg">
+                          Profile Picture
+                        </h1>
+                        <p className="text-lg font-bold">
+                          <img
+                            src={`${Problem?.User[0]?.ProfilePicture}`}
+                            alt="image-not-found"
+                            className="h-[70px] w-[70px] object-contain"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Votes Details</h1>
             <div className=" border-2 border-gray-200 bg-white rounded-md p-5">
