@@ -1,29 +1,35 @@
 import Header from "../../components/navigation/Header";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Spin, Tabs } from "antd";
+import { Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
-import OfferingsProfile from "../../components/Profile/OfferingsProfile";
-import { clearSession } from "../../Redux/SessionRedux";
-import { FetchProfile } from "../../Redux/DashboardData";
+import { clearSession, createAdminSession } from "../../Redux/SessionRedux";
+import { FetchProfile } from "../../Redux/AdminDashboardData";
 import { TiPlus } from "react-icons/ti";
 import { HiUserGroup } from "react-icons/hi";
 import { AiFillCheckCircle } from "react-icons/ai";
+import AllProblems from "./AllProblems";
 
-const UpdateProfile = () => {
+const AdminProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session.session);
-  const dashboard = useSelector((state) => state.DashboardData);
-  const error = useSelector((state) => state.DashboardData.error);
+  const dashboard = useSelector((state) => state.AdminDashboardData);
+  const error = useSelector((state) => state.AdminDashboardData.error);
   useEffect(() => {
     dispatch(FetchProfile());
     //eslint-disable-next-line
   }, [dispatch]);
+  useEffect(() => {
+    if (dashboard?.isProfileFetched) {
+      dispatch(createAdminSession());
+    }
+    //eslint-disable-next-line
+  }, [dashboard?.isProfileFetched]);
   if (error) {
     dispatch(clearSession());
-    navigate("/auth/signin", {
+    navigate("/admin", {
       state: { PageError: true, error: dashboard?.errorMessage },
     });
   }
@@ -59,11 +65,12 @@ const UpdateProfile = () => {
       ) : (
         <div className="min-h-full">
           {/* {console.log(UserInfo)} */}
+
           <Header />
           <div className="flex flex-1 flex-col bg-main-bg-color">
             <main className="flex-1 pb-8">
               <div>
-                <div className=" sm:px-6 lg:mx-auto lg:max-w-6xl">
+                <div className=" sm:px-6 lg:mx-auto lg:max-w-7xl">
                   <div
                     // style={{
                     //   boxShadow:
@@ -113,10 +120,11 @@ const UpdateProfile = () => {
                     </div>
                   </div>
 
-                  <div className="mx-auto mt-10 mb-10 max-w-6xl">
+                  <div className="mx-auto mt-10 mb-10 w-full max-w-7xl">
                     <h2 className="text-lg font-medium leading-6 text-gray-900">
                       Overview
                     </h2>
+
                     <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                       {/* Card */}
                       {cards.map((card) => (
@@ -160,17 +168,18 @@ const UpdateProfile = () => {
                       ))}
                     </div>
                   </div>
+                  <AllProblems />
 
-                  <Tabs
+                  {/* <Tabs
                     defaultActiveKey="1"
                     type="line"
                     size={"large"}
                     tabBarGutter={30}
                   >
-                    <Tabs.TabPane key={"Offerings"} tab="My Problems">
-                      <OfferingsProfile />
+                    <Tabs.TabPane key={"All Problems"} tab="All Problems">
+                      <AllProblems />
                     </Tabs.TabPane>
-                  </Tabs>
+                  </Tabs> */}
                 </div>
               </div>
             </main>
@@ -181,4 +190,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default AdminProfile;

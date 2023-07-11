@@ -12,11 +12,11 @@ const Faq = () => {
   return (
     <>
       <Header />
-      <div className="mt-5">
+      <div className="mt-5 mb-10">
         <div className="m-auto flex w-full max-w-5xl flex-col justify-center">
           <div className="m-auto">
             <h1 className="text-center font-sans text-xl font-bold text-[#20DEFD]">
-              For Investors
+              For Users
             </h1>
             <h1 className="font-sans text-[50px] font-bold text-black">
               Frequently Asked Questions
@@ -24,7 +24,11 @@ const Faq = () => {
           </div>
           <div className="mt-5">
             <Collapse accordion className="w-full">
-              <Panel header="What Is Chain Raise" key="1" className="Panel-faq">
+              <Panel
+                header="What Is Mobilize Solutions"
+                key="1"
+                className="Panel-faq"
+              >
                 <p>
                   ChainRaise is a digital asset platform, that raises money for
                   real estate opportunities and businesses. Using blockchain
@@ -32,7 +36,7 @@ const Faq = () => {
                   and secure for everyone involved.
                 </p>
               </Panel>
-              <Panel header="Who can Invest Via ChainRaise" key="2">
+              <Panel header="Who we will get help?" key="2">
                 <p>
                   If you’re over 18, you can invest with us! (If you’re younger,
                   good for you for getting an early start! You’ll need a parent
@@ -44,159 +48,7 @@ const Faq = () => {
                   place contingent on your annual income and net worth.
                 </p>
               </Panel>
-              <Panel
-                header="What is investing in alternative securities?"
-                key="3"
-              >
-                <p>
-                  For more than two hundred years investors have publicly traded
-                  stocks and bonds. But those types of investments have their
-                  limitations, leading investors to alternative securities for
-                  the purpose of generating income, diversifying portfolios,
-                  boosting returns, or raising funds for other projects. These
-                  alternatives include real estate, stock or membership units in
-                  privately-held businesses, private equity, commodities,
-                  venture capital, farmland/timberland, mineral rights, tax lien
-                  certificates, hedge funds, annuities, art and collectibles, or
-                  even wine collections or antique coins. In short, a multitude
-                  of investment options are available beyond the floor of the
-                  New York Stock Exchange. Why do people invest in alternative
-                  securities? Some of the most prevalent reasons include
-                  favorable economic conditions, less dependence on typical
-                  market fluctuations, leveraging specific knowledge or skills,
-                  tax advantages, illiquid investments, higher fees, and market
-                  volatility.
-                </p>
-              </Panel>
-              <Panel header="What Is Chain Raise" key="1" className="Panel-faq">
-                <p>
-                  ChainRaise is a digital asset platform, that raises money for
-                  real estate opportunities and businesses. Using blockchain
-                  technology, we make startup investment and fundraising safe
-                  and secure for everyone involved.
-                </p>
-              </Panel>
-              <Panel header="Who can Invest Via ChainRaise" key="2">
-                <p>
-                  If you’re over 18, you can invest with us! (If you’re younger,
-                  good for you for getting an early start! You’ll need a parent
-                  to set up a trust, or something equivalent, so that they can
-                  invest in your name.) The SEC Investor Bulletin, linked here,
-                  will give you some additional information about how much money
-                  you can or should invest using platforms like ChainRaise.
-                  Because of the risks involved, there are some limitations in
-                  place contingent on your annual income and net worth.
-                </p>
-              </Panel>
-              <Panel
-                header="What is investing in alternative securities?"
-                key="3"
-              >
-                <p>
-                  For more than two hundred years investors have publicly traded
-                  stocks and bonds. But those types of investments have their
-                  limitations, leading investors to alternative securities for
-                  the purpose of generating income, diversifying portfolios,
-                  boosting returns, or raising funds for other projects. These
-                  alternatives include real estate, stock or membership units in
-                  privately-held businesses, private equity, commodities,
-                  venture capital, farmland/timberland, mineral rights, tax lien
-                  certificates, hedge funds, annuities, art and collectibles, or
-                  even wine collections or antique coins. In short, a multitude
-                  of investment options are available beyond the floor of the
-                  New York Stock Exchange. Why do people invest in alternative
-                  securities? Some of the most prevalent reasons include
-                  favorable economic conditions, less dependence on typical
-                  market fluctuations, leveraging specific knowledge or skills,
-                  tax advantages, illiquid investments, higher fees, and market
-                  volatility.
-                </p>
-              </Panel>
-            </Collapse>
-          </div>
-        </div>
-      </div>
-
-      <div className="my-24">
-        <div className="m-auto flex w-full max-w-5xl flex-col justify-center">
-          <div className="m-auto">
-            <h1 className="text-center font-sans text-xl font-bold text-[#20DEFD]">
-              For Business
-            </h1>
-            <h1 className="font-sans text-[50px] font-bold text-black">
-              Frequently Asked Questions
-            </h1>
-          </div>
-          <div className="mt-5">
-            <Collapse accordion className="w-full">
-              <Panel header="What Is Chain Raise" key="1" className="Panel-faq">
-                <p>
-                  ChainRaise is a digital asset platform, that raises money for
-                  real estate opportunities and businesses. Using blockchain
-                  technology, we make startup investment and fundraising safe
-                  and secure for everyone involved.
-                </p>
-              </Panel>
-              <Panel header="Who can Invest Via ChainRaise" key="2">
-                <p>
-                  If you’re over 18, you can invest with us! (If you’re younger,
-                  good for you for getting an early start! You’ll need a parent
-                  to set up a trust, or something equivalent, so that they can
-                  invest in your name.) The SEC Investor Bulletin, linked here,
-                  will give you some additional information about how much money
-                  you can or should invest using platforms like ChainRaise.
-                  Because of the risks involved, there are some limitations in
-                  place contingent on your annual income and net worth.
-                </p>
-              </Panel>
-              <Panel
-                header="What is investing in alternative securities?"
-                key="3"
-              >
-                <p>
-                  For more than two hundred years investors have publicly traded
-                  stocks and bonds. But those types of investments have their
-                  limitations, leading investors to alternative securities for
-                  the purpose of generating income, diversifying portfolios,
-                  boosting returns, or raising funds for other projects. These
-                  alternatives include real estate, stock or membership units in
-                  privately-held businesses, private equity, commodities,
-                  venture capital, farmland/timberland, mineral rights, tax lien
-                  certificates, hedge funds, annuities, art and collectibles, or
-                  even wine collections or antique coins. In short, a multitude
-                  of investment options are available beyond the floor of the
-                  New York Stock Exchange. Why do people invest in alternative
-                  securities? Some of the most prevalent reasons include
-                  favorable economic conditions, less dependence on typical
-                  market fluctuations, leveraging specific knowledge or skills,
-                  tax advantages, illiquid investments, higher fees, and market
-                  volatility.
-                </p>
-              </Panel>
-              <Panel header="What Is Chain Raise" key="1" className="Panel-faq">
-                <p>
-                  ChainRaise is a digital asset platform, that raises money for
-                  real estate opportunities and businesses. Using blockchain
-                  technology, we make startup investment and fundraising safe
-                  and secure for everyone involved.
-                </p>
-              </Panel>
-              <Panel header="Who can Invest Via ChainRaise" key="2">
-                <p>
-                  If you’re over 18, you can invest with us! (If you’re younger,
-                  good for you for getting an early start! You’ll need a parent
-                  to set up a trust, or something equivalent, so that they can
-                  invest in your name.) The SEC Investor Bulletin, linked here,
-                  will give you some additional information about how much money
-                  you can or should invest using platforms like ChainRaise.
-                  Because of the risks involved, there are some limitations in
-                  place contingent on your annual income and net worth.
-                </p>
-              </Panel>
-              <Panel
-                header="What is investing in alternative securities?"
-                key="3"
-              >
+              <Panel header="Is There Any Fee for that?" key="3">
                 <p>
                   For more than two hundred years investors have publicly traded
                   stocks and bonds. But those types of investments have their

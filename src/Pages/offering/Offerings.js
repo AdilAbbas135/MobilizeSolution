@@ -1,285 +1,330 @@
-import { PlusSmallIcon } from "@heroicons/react/24/outline";
-import { Collapse, Radio, Select, Space } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
-import { Spin } from "antd";
-import React, { useEffect, useState } from "react";
-import Header from "../../components/navigation/Header";
+import React, { useState } from "react";
+import { AiOutlineFieldTime, AiOutlineSearch } from "react-icons/ai";
+import { HiBookOpen, HiOutlineLocationMarker } from "react-icons/hi";
+import { IoMdLocate } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { FcHighPriority } from "react-icons/fc";
+import { useEffect } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import { Spin, Select, Input } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import Header from "../../components/navigation/Header";
+import { createAlert } from "../../Redux/Alert";
+import { useDispatch } from "react-redux";
+import { FaVoteYea } from "react-icons/fa";
+import { Button } from "@material-tailwind/react";
+import { CircularProgress } from "@mui/material";
+import { MdOutlineDoneAll, MdPending } from "react-icons/md";
+import { SiProgress } from "react-icons/si";
 
 const Offerings = () => {
-  const navigate = useNavigate();
-  const { Option } = Select;
-  const { Panel } = Collapse;
-  const [allofferings, setallofferings] = useState([]);
+  const dispatch = useDispatch();
+  const [AllProblems, setAllProblems] = useState([]);
   const [loading, setloading] = useState(true);
+  const [SearchData, setSearchData] = useState({});
+  const [SearchBtnLoading, setSearchBtnLoading] = useState(false);
 
-  const subCategories = [
-    { name: "Energy", href: "#" },
-    { name: "Fintech & Finance", href: "#" },
-    { name: "Media", href: "#" },
-    { name: "Real Estate", href: "#" },
-    { name: "Technology", href: "#" },
-  ];
-
-  const handlecategoryfetch = async (catname) => {
-    //   if(catname==="Energy"){
-    //     var data = await prisma.of.findMany({
-    //       where: { organization: },
-    //     })
-    //     var stringifiedData = safeJsonStringify(offerings)
-    //     offerings = JSON.parse(stringifiedData)
-    //   }
+  const ChangePriority = (value) => {
+    setSearchData({ ...SearchData, Priority: value });
   };
 
-  const handleChangeSelect = (value) => {
-    if (value === "MinimumLow") {
-      // setallofferings(props.lowtoHigh);
-    } else if (value === "MinimumHigh") {
-      //setallofferings(props.HightoLow);
-    } else if (value === "Ending Soon") {
-      //setallofferings(props.EndingSoon);
-    } else if (value === "Newest") {
-      //setallofferings(props.Newest);
-    }
-  };
+  // const AllProblems = [
+  //   {
+  //     profilepicture: "/assets/nightfall-logo.webp",
+  //     name: "adil abbas",
+  //     datePosted: "29 april, 2020",
+  //     question: "Problem Number 1",
+  //     location: "Phalia",
+  //     Salary: "50k",
+  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
+  //   },
+  //   {
+  //     profilepicture: "/assets/descript-logo.webp",
+  //     name: "usama mumtaz",
+  //     datePosted: "10 august, 2020",
+  //     question: "Problem Number 2",
+  //     location: "Gujrat",
+  //     Salary: "80k",
+  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
+  //   },
+  //   {
+  //     profilepicture: "/assets/mercury-logo.webp",
+  //     name: "Rehmana Tallat",
+  //     datePosted: "29 april, 2020",
+  //     question: "Problem Number 3",
+  //     location: "Jehlum",
+  //     Salary: "90k",
+  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
+  //   },
+  //   {
+  //     profilepicture: "/assets/superside-logo.webp",
+  //     name: "Ustaad g",
+  //     datePosted: "29 april, 2022",
+  //     question: "Problem Number 4",
+  //     location: "Gujrat",
+  //     Salary: "90k",
+  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
+  //   },
+  //   {
+  //     profilepicture: "/assets/webflow-logo.webp",
+  //     name: "adil abbas",
+  //     datePosted: "29 april, 2020",
+  //     question: "Webflow Expert Urgently",
+  //     location: "Gujrat",
+  //     Salary: "90k",
+  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
+  //   },
+  // ];
 
-  const fetchOfferings = async () => {
-    axios
-      .get("https://beta.chainraise.info/manage/api/offers/listing")
-      .then((result) => {
-        // console.log(result?.data?.data);
-        setallofferings(result?.data?.data);
+  const FetchAllProblems = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/find/problems`)
+      .then((response) => {
+        console.log(response);
+        setAllProblems(response.data);
         setloading(false);
       })
-      .catch((err) => {
-        toast.error("Something Went Wrong! Reload the Page", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+      .catch((error) => {
+        console.log(error);
+        dispatch(
+          createAlert({
+            type: "error",
+            message: "Something went wrong! Try Again",
+          })
+        );
       });
   };
+
   useEffect(() => {
-    fetchOfferings();
+    FetchAllProblems();
+    //eslint-disable-next-line
   }, []);
 
+  const SearchProblem = async () => {
+    setSearchBtnLoading(true);
+    await axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/find/searchproblem`,
+        SearchData
+      )
+      .then((response) => {
+        setSearchBtnLoading(false);
+        console.log(response);
+        setAllProblems(response.data);
+      })
+      .catch((error) => {
+        setSearchBtnLoading(false);
+        console.log(error);
+        dispatch(
+          createAlert({
+            type: "error",
+            message: "Something went wrong! Try Again",
+          })
+        );
+      });
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header />
-      <ToastContainer />
+    <>
       {loading ? (
         <div className="h-screen flex items-center justify-center">
           <Spin indicator={<LoadingOutlined style={{ fontSize: 45 }} spin />} />
           <h2 className="ml-5">Loading....</h2>
         </div>
       ) : (
-        <div className="py-6">
-          <div className="mx-auto max-w-3xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-8 lg:px-8">
-            <main className="lg:col-span-8">
-              <h1 className="text-3xl font-semibold leading-6 text-gray-900">
-                Invest in the next big opportunity here!
-              </h1>
-
-              <h2 className="text-l mt-4 leading-6 text-gray-600">
-                All companies are vetted & have passed our due dilligence
-                process.{" "}
-              </h2>
-              <h2 className="text-l leading-6 text-gray-600">
-                {" "}
-                Click <span className="cursor-pointer text-cyan-500">
-                  here
-                </span>{" "}
-                to learn more.
-              </h2>
-
-              <div className="flex items-center justify-end">
-                <Select
-                  defaultValue="Sort"
-                  style={{ width: 200 }}
-                  onChange={handleChangeSelect}
+        <div className="bg-gray-100">
+          <Header />
+          <div className="pb-10">
+            <div className="w-full mx-auto max-w-7xl pb-10 rounded-b-md">
+              <div className="mt-10">
+                <h1 className="text-2xl font-bold leading-6 text-gray-900 border-l-4 border-cr-primary pl-2">
+                  FIND PROBLEMS AS YOU WANT
+                </h1>
+                <div
+                  className={`mt-5 h-16 bg-white md:flex items-center space-x-2 text-black justify-between px-5 rounded-md w-full`}
                 >
-                  <Option value="Most Popular">Most Popular</Option>
-                  <Option value="Ending Soon">Ending Soon</Option>
-                  <Option value="Newest">Newest</Option>
-                  <Option value="MinimumHigh">Minimum: High to Low</Option>
-                  <Option value="MinimumLow">Minimum: Low to High</Option>
-                </Select>
+                  <div className="w-full flex items-center space-x-2 border-r-2">
+                    <Input
+                      type="text"
+                      size="large"
+                      placeholder="Prolem Title"
+                      className="w-full"
+                      value={SearchData?.Title}
+                      onChange={(e) => {
+                        setSearchData({ ...SearchData, Title: e.target.value });
+                      }}
+                      prefix={
+                        <AiOutlineSearch className="text-2xl text-gray-400" />
+                      }
+                    />
+
+                    {/* <input type={"text"} placeholder="Prolem Title" /> */}
+                  </div>
+                  <div className="w-full flex items-center space-x-2 border-r-2">
+                    <Input
+                      type="text"
+                      size="large"
+                      placeholder="Enter Location"
+                      className="w-full"
+                      value={SearchData?.Location}
+                      onChange={(e) => {
+                        setSearchData({
+                          ...SearchData,
+                          Location: e.target.value,
+                        });
+                      }}
+                      prefix={<IoMdLocate className="text-2xl text-gray-400" />}
+                    />
+                  </div>
+                  <div className="w-full flex items-center space-x-2 border-r-2">
+                    <HiBookOpen className="text-2xl text-gray-400" />
+                    <Select
+                      allowClear
+                      defaultValue="Select Priority"
+                      style={{ width: "100%" }}
+                      onChange={ChangePriority}
+                      size="large"
+                      options={[
+                        { value: "0", label: "Low" },
+                        { value: "1", label: "Medium" },
+                        { value: "2", label: "High" },
+                      ]}
+                    />
+                    {/* <input
+                      type={"text"}
+                      placeholder="Select Priority"
+                      className="w-full"
+                      value={SearchData?.Priority}
+                      onChange={(e) => {
+                        setSearchData({
+                          ...SearchData,
+                          Priority: e.target.value,
+                        });
+                      }}
+                    /> */}
+                  </div>
+
+                  <Button
+                    onClick={() => SearchProblem()}
+                    className="w-[50%] px-4 bg-cr-primary text-white font-semibold rounded-md disabled:cursor-not-allowed disabled:opacity-50"
+                    disabled={SearchBtnLoading ? true : false}
+                  >
+                    {SearchBtnLoading ? (
+                      <CircularProgress size={"15px"} sx={{ color: "white" }} />
+                    ) : (
+                      <span> Search</span>
+                    )}
+                  </Button>
+                </div>
               </div>
 
-              <hr className="my-4" />
-              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-                {allofferings.length === 0 ? (
-                  <h1 className="text-xl text-blue-900">
-                    No Offerings To Show
-                  </h1>
-                ) : (
-                  allofferings.map((product) => (
-                    <div
-                      key={product.id}
-                      className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
-                    >
-                      <div className="aspect-w-3 aspect-h-3 md:aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-                        {/* eslint-disable-next-line */}
-                        <img
-                          src={
-                            product.banner
-                              ? product.banner
-                              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1aGhqQ0QRQUcv7lHtXn4xLzFt9pzo7L_duQ&usqp=CAU"
-                          }
-                          alt="offering-image"
-                          className="h-full w-full object-cover object-center sm:h-full sm:w-full"
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col space-y-2 p-4">
-                        <h3 className="text-sm font-medium text-gray-900">
-                          {/* eslint-disable-next-line */}
-                          <a
-                            // href={"/offerings/" + product.slug}
-                            onClick={() => {
-                              window.scrollTo({ top: 0 });
-                              navigate(`/offerings/${product?.name}`, {
-                                state: product,
-                              });
-                            }}
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
+              <div className="mt-5 grid grid-cols-10 gap-x-3">
+                <div className="col-span-10 border-2 border-gray-200 bg-white p-5 rounded-sm">
+                  <div className="flex justify-between items-center border-b pb-3">
+                    <h1 className="font-bold text-text_color_secondary opacity-90 text-lg uppercase">
+                      {AllProblems?.length} Problems
+                    </h1>
+                  </div>
+                  <div className="space-y-5">
+                    {AllProblems.map((question, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="border-b py-5 px-5 grid grid-cols-10 gap-3 bg-gray-100 rounded-md"
+                        >
+                          <div className="col-span-3">
+                            <img
+                              src={question?.featuredImage}
+                              className="h-full w-full object-cover"
+                              alt=""
                             />
-                            {product.name}
-                          </a>
-                        </h3>
-                        <p className="text-sm text-gray-500">
-                          {product.shortDescription}
-                        </p>
-                        <div className="flex flex-1 flex-col justify-end">
-                          <p className="text-sm italic text-gray-500">
-                            {product.type}
-                          </p>
-                          <p className="text-base font-medium text-gray-900">
-                            $ {product.goal}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            </main>
-            <aside className="mt-36 hidden sm:col-span-4 sm:block">
-              <div className="sticky top-6 space-y-4">
-                <form className="hidden lg:block">
-                  <h3 className="sr-only">Categories</h3>
-                  {/* eslint-disable-next-line */}
-                  <ul
-                    role="list"
-                    className="space-y-4 border-b pb-6 text-sm font-medium text-gray-900"
-                  >
-                    {subCategories.map((category) => (
-                      <li
-                        key={category.name}
-                        onClick={() => handlecategoryfetch(category.name)}
-                      >
-                        {/* eslint-disable-next-line */}
-                        <a>{category.name}</a>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Collapse
-                    className="p-0"
-                    defaultActiveKey={["0"]}
-                    ghost
-                    expandIconPosition="end"
-                    expandIcon={() => <PlusSmallIcon className="h-5 w-5" />}
-                  >
-                    <Panel
-                      header="Minimum Investment"
-                      key="1"
-                      className="font-bold "
-                    >
-                      <Radio.Group
-                      // onChange={onChangeInvestment} value={value}
-                      >
-                        <Space direction="vertical">
-                          <Radio value={10}>10</Radio>
-                          <Radio value={100}>100</Radio>
-                        </Space>
-                      </Radio.Group>
-                    </Panel>
-                  </Collapse>
-                  {/* {filters.map((section) => (
-              <Disclosure
-                as="div"
-                key={section.id}
-                className="border-b border-gray-200 py-6"
-              >
-                {({ open }) => (
-                  <>
-                    <h3 className="-my-3 flow-root">
-                      <Disclosure.Button className="flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500">
-                        <span className="font-medium text-gray-900">
-                          {section.name}
-                        </span>
-                        <span className="ml-6 flex items-center">
-                          {open ? (
-                            <MinusSmIcon
-                              className="h-5 w-5"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <PlusSmIcon
-                              className="h-5 w-5"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </span>
-                      </Disclosure.Button>
-                    </h3>
-                    <Disclosure.Panel className="pt-6">
-                      <div className="space-y-4">
-                        {section.options.map((option, optionIdx) => (
-                          <div
-                            key={option.value}
-                            className="flex items-center"
-                          >
-                            <input
-                              id={`filter-${section.id}-${optionIdx}`}
-                              name={`${section.id}[]`}
-                              defaultValue={option.value}
-                              type="radio"
-                              defaultChecked={option.checked}
-                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label
-                              htmlFor={`filter-${section.id}-${optionIdx}`}
-                              className="ml-3 text-sm text-gray-600"
-                            >
-                              {option.label}
-                            </label>
                           </div>
-                        ))}
-                      </div>
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-            ))} */}
-                </form>
+                          <div className="col-span-7 qaheader flex space-x-3">
+                            <img
+                              src={"./assets/logo.png"}
+                              alt=""
+                              className="h-[45px] w-[45px] rounded-full border-2 border-gray-300 p-[2px] object-cover"
+                            />
+                            <div className="w-full">
+                              <div className="w-full flex items-center justify-between">
+                                <h1 className="font-semibold text-sm text-text_color_secondary_2">
+                                  By {question.User[0].Email}
+                                </h1>
+
+                                <p className="flex items-center text-sm text-text_color_secondary_2">
+                                  <AiOutlineFieldTime
+                                    size={20}
+                                    className="mr-1 text-cr-primary"
+                                  />
+                                  {moment(question.createdAt).fromNow()}
+                                </p>
+                              </div>
+                              <Link to={`/offerings/${question?._id}`}>
+                                <h1 className="text-3xl font-bold text-text_color hover:text-cr-primary transition-all cursor-pointer capitalize">
+                                  {question.Name}
+                                </h1>
+                              </Link>
+                              <p className="mt-2">{question.Description}</p>
+                              <div className="mt-2 flex items-center space-x-2">
+                                <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md">
+                                  <HiOutlineLocationMarker
+                                    size={18}
+                                    className="mr-1"
+                                  />{" "}
+                                  {question?.Location}
+                                </p>
+                                <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md">
+                                  <FcHighPriority size={18} className="mr-1" />
+                                  {question?.Priority === 0 && <span>Low</span>}
+                                  {question?.Priority === 1 && (
+                                    <span>Medium</span>
+                                  )}
+                                  {question?.Priority === 2 && (
+                                    <span>High</span>
+                                  )}
+                                </p>
+                                <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md">
+                                  {question?.Status === 0 && (
+                                    <>
+                                      <MdPending size={18} className="mr-1" />
+                                      <span>Pending</span>
+                                    </>
+                                  )}
+                                  {question?.Status === 1 && (
+                                    <>
+                                      <SiProgress size={18} className="mr-1" />
+                                      <span>In Progress</span>
+                                    </>
+                                  )}
+                                  {question?.Status === 2 && (
+                                    <>
+                                      <MdOutlineDoneAll
+                                        size={18}
+                                        className="mr-1"
+                                      />
+                                      <span>Completed</span>
+                                    </>
+                                  )}
+                                </p>
+                                <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md">
+                                  <FaVoteYea size={18} className="mr-1" />{" "}
+                                  {question?.Votes?.length} votes
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-            </aside>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

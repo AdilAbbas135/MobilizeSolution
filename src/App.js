@@ -7,31 +7,45 @@ import Home from "./Pages/Home/Home";
 import Offerings from "./Pages/offering/Offerings";
 import Profile from "./Pages/Profile/Profile";
 import Raisefunds from "./Pages/raise-funds/Raisefunds";
-import Organization from "./Pages/Organizations/Organization";
-import SingleOrganization from "./Pages/Organizations/SingleOrganization";
-// import SingleOffering from "./Pages/offering/SingleOffering";
 import UpdateProfile from "./Pages/Profile/UpdateProfile";
-import SingleOffering2 from "./Pages/offering/SingleOffering2";
+import SingleProblem from "./Pages/offering/SingleProblem";
+import Invest from "./Pages/Invest/Invest";
+import { ToastContainer } from "react-toastify";
+import SendEmail from "./Pages/auth/Signup/sendemail";
+import Emailverification from "./Pages/auth/Signup/emailverification";
+import DonateToOffering from "./Pages/offering/Donate";
+import AdminSignInPage from "./Pages/admin/Signin";
+import AdminProfile from "./Pages/admin/Profile";
+import ViewProblemDetail from "./Pages/admin/ViewProblemDetail";
 
 function App() {
   return (
     <div className="App ">
+      <ToastContainer />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/raise-funds" element={<Raisefunds />} />
+        <Route exact path="/admin" element={<AdminSignInPage />} />
+        <Route exact path="/admin-dashboard" element={<AdminProfile />} />
+        <Route
+          exact
+          path="/admin-dashboard/:id"
+          element={<ViewProblemDetail />}
+        />
+        {/* <Route exact path="/raise-funds" element={<Raisefunds />} /> */}
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/faq" element={<Faq />} />
         <Route exact path="/offerings" element={<Offerings />} />
-        <Route exact path="/offerings/:name" element={<SingleOffering2 />} />
-        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/offerings/:name" element={<SingleProblem />} />
+
+        <Route exact path="/profile" element={<UpdateProfile />} />
         <Route exact path="/profile/update" element={<UpdateProfile />} />
         <Route exact path="/auth/signin" element={<Signin />} />
         <Route exact path="/auth/signup" element={<Signup />} />
-        <Route exact path={"/organizations"} element={<Organization />} />
+        <Route exact path="/auth/signup/sendemail" element={<SendEmail />} />
         <Route
           exact
-          path="/organizations/:name"
-          element={<SingleOrganization />}
+          path="/auth/signup/emailverification"
+          element={<Emailverification />}
         />
       </Routes>
     </div>

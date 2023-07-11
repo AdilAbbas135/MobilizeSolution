@@ -1,59 +1,57 @@
-import { Spin } from "antd";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../../components/navigation/Footer/Footer";
 import Header from "../../components/navigation/Header";
-import { LoadingOutlined } from "@ant-design/icons";
 import { FiChevronRight } from "react-icons/fi";
+import FeaturedProblems from "../../components/FeatruredProblems/FeaturedProblems";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [allofferings, setallofferings] = useState([]);
-  const [loading, setloading] = useState(true);
-  useEffect(() => {
-    document.title = "Chainraise | Home";
-    axios
-      .get("https://beta.chainraise.info/manage/api/offers/listing")
-      .then((result) => {
-        setallofferings(result?.data?.data);
-        setloading(false);
-      })
-      .catch((err) => {
-        toast.error("Something Went Wrong! Reload the Page", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      });
-  }, []);
+  // const navigate = useNavigate();
+  // const [allofferings, setallofferings] = useState([]);
+  // const [loading, setloading] = useState(true);
+  // useEffect(() => {
+  //   document.title = "";
+  //   axios
+  //     .get("http://localhost:5000/api/offerings")
+  //     .then((result) => {
+  //       console.log(result?.data?.offerings);
+  //       setallofferings(result?.data?.offerings);
+  //       setloading(false);
+  //     })
+  //     .catch((err) => {
+  //       toast.error("Something Went Wrong! Reload the Page", {
+  //         position: "top-center",
+  //         autoClose: 3000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: false,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: "light",
+  //       });
+  //     });
+  // }, []);
 
   const perks = [
     {
-      name: "Access exclusive opportunities",
+      name: "Post Your Problem",
       imageUrl:
         "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
       description:
-        "Gain access to never before seen offerings available only on this platform",
+        "Its very simple.just sign up and you are ready to post your problem",
     },
     {
-      name: "Done-for-you Due Diligence",
+      name: "Vote for a Problem",
       imageUrl:
         "https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg",
       description:
-        "Our offerings are reviewed and checked for compliance with all pertinent regulatory bodies",
+        "The more Vote Your Problem Gets.The more Chances are to solve the problem",
     },
     {
-      name: "Support Your Passions",
+      name: "Solve Your Problem",
       imageUrl:
         "https://tailwindui.com/img/ecommerce/icons/icon-planet-light.svg",
-      description: "Invest in the things you care about, and turn a profit too",
+      description: "Admin Will Solve Your Problem and will give Feedback",
     },
   ];
   return (
@@ -77,10 +75,10 @@ const Home = () => {
                         {/* eslint-disable-next-line */}
                         <a className="mx-auto inline-flex items-center rounded-full border border-gray-700 bg-transparent p-1 pr-2 sm:text-base lg:text-sm xl:text-base">
                           <span className="rounded-full bg-cr-primary px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
-                            Need funds?
+                            Need Help?
                           </span>
                           <span className="ml-4 text-sm text-stone-900">
-                            Start your own ChainRaise!
+                            Post Your Problem!
                           </span>
                           <FiChevronRight
                             className="ml-2 h-5 w-5 text-cr-primary font-bold"
@@ -92,16 +90,16 @@ const Home = () => {
 
                     <h1 className="my-4 text-center text-4xl tracking-tight sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
                       <span className="font-bold text-cr-primary">
-                        Investing in the next big thing should be for
+                        Mobilize: Enhancing Life
                       </span>{" "}
-                      <span className="bg-gradient-to-r from-cr-secondary to-cr-primary bg-clip-text pb-3 font-extrabold text-transparent">
-                        everybody
-                      </span>
+                      {/* <span className="bg-gradient-to-r from-cr-secondary to-cr-primary bg-clip-text pb-3 font-extrabold text-transparent">
+                        Memorable Moments
+                      </span> */}
                     </h1>
-                    <p className="mt-3 text-center text-base text-stone-900 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                      Join ChainRaise now to get started investing in start-ups
-                      and small businesses doing things you care about.
-                    </p>
+                    {/* <p className="mt-3 text-center text-base text-stone-900 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                      Join Mobilize Solutions now and Share your problems with
+                      us and we will solve them for you
+                    </p> */}
                   </div>
                 </div>
               </div>
@@ -117,108 +115,16 @@ const Home = () => {
           </div>
         </div>
 
-        <section aria-labelledby="trending-heading">
-          <div className="mx-auto max-w-7xl py-24 px-4 sm:px-6 sm:py-32 lg:px-8 lg:pt-16">
-            <div className="md:flex md:items-center md:justify-between">
-              <h2
-                id="favorites-heading"
-                className="text-2xl font-bold tracking-tight text-gray-900"
-              >
-                Trending Raises
-              </h2>
-              <Link to={"/offerings"}>
-                {/* eslint-disable-next-line */}
-                <a className="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
-                  View all raises<span aria-hidden="true"> &rarr;</span>
-                </a>
-              </Link>
-            </div>
-            {loading ? (
-              <div className=" flex items-center justify-center">
-                <Spin
-                  indicator={<LoadingOutlined style={{ fontSize: 45 }} spin />}
-                />
-                <h2 className="ml-5">Loading Offerings....</h2>
-              </div>
-            ) : (
-              <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-                {allofferings.length === 0 ? (
-                  <h1>No Offerings to Show</h1>
-                ) : (
-                  allofferings.map((raise) => (
-                    <div
-                      key={raise.id}
-                      className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
-                    >
-                      <div className="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-                        <img
-                          src={
-                            raise.banner
-                              ? raise.banner
-                              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1aGhqQ0QRQUcv7lHtXn4xLzFt9pzo7L_duQ&usqp=CAU"
-                          }
-                          alt=""
-                          className="h-full w-full object-cover  sm:h-full sm:w-full"
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col space-y-2 p-4">
-                        <h3 className="text-sm font-medium text-gray-900">
-                          {/* eslint-disable-next-line */}
-                          <a
-                            // href={"/offerings/" + raise.name}
-                            onClick={() => {
-                              window.scrollTo({ top: 0 });
-                              navigate(`/offerings/${raise?.name}`, {
-                                state: raise,
-                              });
-                            }}
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                            {raise.name}
-                          </a>
-                        </h3>
-                        <p className="text-sm text-gray-500">
-                          {raise.shortDescription}
-                        </p>
-                        <div className="flex flex-1 flex-col justify-end">
-                          <p className="text-sm italic text-gray-500">
-                            {raise.type}
-                          </p>
-                          <p className="text-base font-medium text-gray-900">
-                            $ {raise.goal}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
-
-            <div className="mt-8 text-sm md:hidden">
-              {/* eslint-disable-next-line */}
-              <a
-                href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                View all raises<span aria-hidden="true"> &rarr;</span>
-              </a>
-            </div>
-          </div>
-        </section>
+        <FeaturedProblems />
 
         <section
           aria-labelledby="perks-heading"
-          className="border-t border-gray-200 bg-gray-50"
+          className="border-t border-gray-200 bg-gray-50 mt-10"
         >
-          <h2 id="perks-heading" className="sr-only">
-            Our perks
-          </h2>
-
-          <div className="mx-auto max-w-7xl py-24 px-4 sm:px-6 sm:py-32 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 py-10 lg:px-8">
+            <h1 className="font-bold text-cr-primary text-3xl text-center uppercase">
+              Our Simple Process Includes
+            </h1>
             <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
               {perks.map((perk) => (
                 <div

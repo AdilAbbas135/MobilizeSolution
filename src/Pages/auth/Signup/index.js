@@ -1,73 +1,59 @@
+// import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { HiLockClosed } from "react-icons/hi";
 import React, { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { SiGmail } from "react-icons/si";
+import { FaFacebookSquare } from "react-icons/fa";
+import { GrLinkedin } from "react-icons/gr";
+import { toast } from "react-toastify";
 import axios from "axios";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
-import { createSession } from "../../Redux/SessionRedux";
-import { createAlert } from "../../Redux/Alert";
 
-const Signin = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+const Signup = () => {
+  const [email, setemail] = useState();
+  const [password, setpassword] = useState();
+  const [username, setusername] = useState();
   const [loading, setloading] = useState(false);
+  const navigate = useNavigate();
 
-  const TryLogin = async () => {
+  useEffect(() => {
+    document.title = "Sign up";
+  }, []);
+
+  const CreateAccount = async () => {
     setloading(true);
     await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/account/login`, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/account/createaccount`, {
         email,
         password,
+        username,
       })
-      .then((response) => {
-        console.log(response);
-        dispatch(
-          createAlert({
-            type: "success",
-            message: "Login Successfull",
-            options: {
-              position: "top-right",
-            },
-          })
-        );
-        localStorage.setItem("authtoken", response.data.authtoken);
-        dispatch(createSession());
-        navigate(`/profile`);
-        setloading(false);
+      .then((result) => {
+        console.log(result);
+        if (result.data?.success) {
+          navigate("/auth/signup/sendemail");
+        }
       })
-      .catch((err) => {
-        // console.log("ok i am in the error");
-        console.log(err);
+      .catch((error) => {
         setloading(false);
-        dispatch(
-          createAlert({
-            type: "error",
-            message: err?.response?.data?.msg
-              ? err?.response?.data?.msg
-              : "Wrong Credentials! Try Again",
-          })
+        console.log(error);
+        toast.error(
+          error?.response?.data?.error
+            ? error.response.data.error
+            : "Something went wrong! Try Again",
+          {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
         );
       });
   };
-  useEffect(() => {
-    if (location?.state?.error) {
-      dispatch(
-        createAlert({
-          type: "error",
-          message: location?.state?.error
-            ? location?.state?.error
-            : "Something Went Wrong! Try Again",
-        })
-      );
-    }
-    //eslint-disable-next-line
-  }, []);
-
   return (
     <>
       <div className="min-h-screen bg-gray-100">
@@ -81,25 +67,40 @@ const Signin = () => {
                     <img
                       className="mx-auto h-[100px] w-auto"
                       src="/assets/logo.png"
-                      alt="Mobilize Solution Logo"
+                      alt=""
                     />
                   </a>
                 </Link>
                 <h2 className="mt-6 text-center text-xl font-bold text-gray-900">
-                  Sign in to your account
+                  Create a New Account
                 </h2>
               </div>
-
               <form
                 className="mt-8 space-y-6"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  TryLogin();
+                  CreateAccount();
                 }}
               >
                 <input type="hidden" name="remember" defaultValue="true" />
                 <div className="-space-y-px rounded-md shadow-sm">
                   <div>
+                    <label htmlFor="username" className="sr-only">
+                      User Name
+                    </label>
+                    <input
+                      id="username"
+                      name="username"
+                      type="text"
+                      value={username}
+                      onChange={(e) => setusername(e.target.value)}
+                      autoComplete="username"
+                      required
+                      className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                      placeholder="username"
+                    />
+                  </div>
+                  <div className="mt-8 space-y-6">
                     <label htmlFor="email-address" className="sr-only">
                       Email address
                     </label>
@@ -135,9 +136,9 @@ const Signin = () => {
 
                 <div>
                   <button
-                    disabled={loading ? true : false}
                     type="submit"
-                    className="disabled:opacity-50 disabled:cursor-not-allowed h-10 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    disabled={loading ? true : false}
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                       <HiLockClosed
@@ -145,27 +146,10 @@ const Signin = () => {
                         aria-hidden="true"
                       />
                     </span>
-                    {loading ? (
-                      <Spin
-                        indicator={
-                          <LoadingOutlined
-                            className="text-white"
-                            style={{ fontSize: 20, color: "white" }}
-                            spin
-                          />
-                        }
-                      />
-                    ) : (
-                      <span>Sign in</span>
-                    )}
+                    Sign Up
                   </button>
                 </div>
               </form>
-              <Link to={"/auth/signup"}>
-                <h1 className="text-lg text-center mt-2">
-                  Dont Have Account? Sign Up here
-                </h1>
-              </Link>
             </div>
           </div>
         </div>
@@ -174,4 +158,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;

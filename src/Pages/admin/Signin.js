@@ -6,21 +6,22 @@ import axios from "axios";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import { createSession } from "../../Redux/SessionRedux";
+import { createAdminSession } from "../../Redux/SessionRedux";
 import { createAlert } from "../../Redux/Alert";
 
 const Signin = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
+  const token = localStorage.getItem("admin-token");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [loading, setloading] = useState(false);
+  const navigate = useNavigate();
 
   const TryLogin = async () => {
     setloading(true);
     await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/account/login`, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/api/admin/login`, {
         email,
         password,
       })
@@ -35,13 +36,13 @@ const Signin = () => {
             },
           })
         );
-        localStorage.setItem("authtoken", response.data.authtoken);
-        dispatch(createSession());
-        navigate(`/profile`);
+        localStorage.setItem("admin-token", response.data.token);
+        dispatch(createAdminSession());
+        navigate(`/admin-dashboard`);
         setloading(false);
       })
       .catch((err) => {
-        // console.log("ok i am in the error");
+        console.log("ok i am in the error");
         console.log(err);
         setloading(false);
         dispatch(
@@ -55,6 +56,9 @@ const Signin = () => {
       });
   };
   useEffect(() => {
+    if (token) {
+      navigate(`/admin-dashboard`);
+    }
     if (location?.state?.error) {
       dispatch(
         createAlert({
@@ -161,11 +165,6 @@ const Signin = () => {
                   </button>
                 </div>
               </form>
-              <Link to={"/auth/signup"}>
-                <h1 className="text-lg text-center mt-2">
-                  Dont Have Account? Sign Up here
-                </h1>
-              </Link>
             </div>
           </div>
         </div>

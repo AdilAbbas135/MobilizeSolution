@@ -2,12 +2,14 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
-import { Dialog, Tab, Transition } from "@headlessui/react";
-import { IoClose } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  // const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [session] = useState(false);
+  const session = useSelector((state) => state.session.session);
+
+  // console.log(session);
   const navigation = {
     categories: [
       {
@@ -33,18 +35,13 @@ const Header = () => {
       },
     ],
     pages: [
-      { name: "Raise", href: "/raise-funds" },
       { name: "FAQ", href: "/faq" },
+      { name: "Problems", href: "/offerings" },
       { name: "Contact Us", href: "/contact" },
-      { name: "Offerings", href: "/offerings" },
     ],
   };
 
-  // const userNavigation = [
-  //   { name: "Offerings", href: "/offerings" },
-  //   { name: "Portfolio", href: "/profile" },
-  //   { name: "My Account", href: "/profile/update" },
-  // ];
+  const userNavigation = [{ name: "My Account", href: "/profile/update" }];
 
   return (
     <>
@@ -55,11 +52,11 @@ const Header = () => {
               <div className="flex h-16 items-center justify-between">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                  <span className="sr-only">ChainRaise</span>
+                  <span className="sr-only">Care & Share</span>
                   <Link to="/">
                     <img
-                      className="h-8 w-auto cursor-pointer"
-                      src="/assets/chainraise_logo_black_text.png"
+                      className="h-[100px] w-auto cursor-pointer"
+                      src="/assets/logo.png"
                       alt="profile-picture"
                     />
                   </Link>
@@ -86,23 +83,26 @@ const Header = () => {
                     >
                       Learn
                     </a>
-                    {/* <div className="my-auto h-8 border border-gray-300"></div> */}
-                    {/* MENU THAT WILL APPEAR WHEN THE USER WILL BE LOGED IN */}
-                    {/* {userNavigation.map((page, index) => (
+                    {session.user.userId && (
+                      <div className="my-auto h-8 border border-gray-300"></div>
+                    )}
+                    {session.user.userId && (
                       <Link
-                        key={index}
-                        to={page.href}
+                        to={
+                          session?.user?.role === "admin"
+                            ? "/admin-dashboard"
+                            : "/profile/update"
+                        }
                         className="flex items-center text-sm font-medium text-gray-700 hover:text-cr-secondary"
                       >
-                       
-                        <a className="text-gray-700">{page.name}</a>
+                        My Account
                       </Link>
-                    ))} */}
+                    )}
                   </div>
                 </div>
 
                 {/* MOBILE MENU */}
-                <Transition.Root show={open} as={Fragment}>
+                {/* <Transition.Root show={open} as={Fragment}>
                   <Dialog
                     as="div"
                     className="relative z-40 lg:hidden"
@@ -142,7 +142,7 @@ const Header = () => {
                             </button>
                           </div>
 
-                          {/* Links */}
+                          
                           <Tab.Group as="div" className="mt-2">
                             <div className="border-b border-gray-200">
                               <Tab.List className="-mb-px flex space-x-8 px-4">
@@ -214,7 +214,7 @@ const Header = () => {
                           </div>
 
                           <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                            {session ? (
+                            {session.user.userId ? (
                               <>
                                 <div className="flow-root">
                                   <button
@@ -252,19 +252,17 @@ const Header = () => {
                                   </a>
                                 </div>
                                 <div className="flow-root">
-                                  {/* <Link
+                                  <Link
                                     href="/auth/signin"
                                     className="-m-2 block p-2 font-medium text-gray-900"
-                                  > */}
-
-                                  <a
+                                  >
+                                  
                                     href="https://beta.chainraise.info/manage/login"
                                     target={"_blank"}
                                     rel="noreferrer"
-                                  >
-                                    Sign In
-                                  </a>
-                                  {/* </Link> */}
+                                  >   
+                                    <a>Sign In</a>
+                                  </Link>
                                 </div>
                               </>
                             )}
@@ -273,31 +271,61 @@ const Header = () => {
                       </Transition.Child>
                     </div>
                   </Dialog>
-                </Transition.Root>
-                {/* eslint-disable-next-line */}
-                <div className="hidden flex-1 items-center justify-end lg:block">
-                  <div className="flex space-x-5 justify-end">
-                    {/* <Link
-                      to="/auth/signin"
-                      className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
-                    > */}
-                    <a
-                      href="https://beta.chainraise.info/manage/login"
-                      target={"_blank"}
-                      rel="noreferrer"
-                      className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
-                    >
-                      Sign In
-                    </a>
-                    {/* </Link> */}
+                </Transition.Root> */}
+                {/* DESKTOP LOGIN AND SIGNUP LINKS */}
+                {session.user.userId ? (
+                  <div className="flex flex-1 items-center justify-end lg:ml-8">
                     <Link
-                      to="/auth/signup"
-                      className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
+                      onClick={() => {
+                        localStorage.removeItem("authtoken");
+                        localStorage.removeItem("admin-token");
+                        window.open("/", "_self");
+                      }}
+                      className="hidden mr-5 text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
                     >
-                      Sign Up
+                      Sign Out
                     </Link>
+                    <span className="relative inline-block">
+                      <Link
+                        to={
+                          session?.user?.role === "admin"
+                            ? "/admin-dashboard"
+                            : "/profile/update"
+                        }
+                      >
+                        <img
+                          className="h-12 w-12 cursor-pointer rounded-full"
+                          src={
+                            session.user.image
+                              ? session.user.image
+                              : "/assets/default_user.png"
+                          }
+                          alt=""
+                        />
+                      </Link>
+
+                      <span className="absolute top-0 right-0 block h-3 w-3 rounded-full bg-cr-secondary ring-2 ring-white" />
+                    </span>
                   </div>
-                </div>
+                ) : (
+                  <div className="hidden flex-1 items-center justify-end lg:block">
+                    <div className="flex space-x-5 justify-end">
+                      <Link
+                        to="/auth/signin"
+                        className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
+                      >
+                        {/* eslint-disable-next-line */}
+                        <a>Sign In </a>
+                      </Link>
+                      <Link
+                        to="/auth/signup"
+                        className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
+                      >
+                        Sign Up
+                      </Link>
+                    </div>
+                  </div>
+                )}
 
                 {/* Mobile menu and search (lg-) */}
                 <div className="flex flex-1 items-center lg:hidden">
@@ -340,13 +368,16 @@ const Header = () => {
                     </Link>
                   </div>
 
-                  {/* {session && (
+                  {/* {session.user.userId && (
                     <div className="flex items-center lg:ml-8">
+                      {console.log("i am in it")}
                       <span className="relative inline-block">
                         <Link href="/profile">
                           <img
                             className="h-12 w-12 cursor-pointer rounded-full"
-                            src={session?.user?.image || "/default_user.png"}
+                            src={
+                              session?.user?.image || "/assets/default_user.png"
+                            }
                             alt=""
                           />
                         </Link>

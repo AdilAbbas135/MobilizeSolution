@@ -1,58 +1,61 @@
 import React, { useEffect } from "react";
-import {
-  CheckCircleIcon,
-  ChevronRightIcon,
-  CurrencyDollarIcon,
-  UserGroupIcon,
-  BanknotesIcon,
-} from "@heroicons/react/24/outline";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { FaAngleRight } from "react-icons/fa";
+import { HiCurrencyDollar, HiUserGroup } from "react-icons/hi";
+import { BsCurrencyExchange } from "react-icons/bs";
 import Footer from "../../components/navigation/Footer/Footer";
 import Header from "../../components/navigation/Header";
 import { Link } from "react-router-dom";
+import { TiPlus } from "react-icons/ti";
 
 const Profile = () => {
-  useEffect(() => {
-    document.title = "Profile | Chainraise";
-  }, []);
   const cards = [
     {
-      name: "Investments",
+      name: "Total Problems Posted",
       href: "#",
-      icon: CurrencyDollarIcon,
-      amount: "1",
+      icon: TiPlus,
+      amount: "50",
     },
-    { name: "Saved Offerings", href: "#", icon: UserGroupIcon, amount: "42" },
+    {
+      name: "High Priority Problems",
+      href: "#",
+      icon: HiUserGroup,
+      amount: "20",
+    },
+    {
+      name: "Solved Problems",
+      href: "#",
+      icon: AiFillCheckCircle,
+      amount: "10",
+    },
 
     // More items...
   ];
   const transactions = [
     {
       id: 1,
-      name: "Payment to Multivest",
+      name: "Problem Title",
       href: "#",
-      amount: "$20,000",
-      currency: "USD",
-      status: "success",
+      amount: "Gujrat",
+      status: "in Progress",
       date: "July 11, 2022",
       datetime: "2022-07-11",
     },
     {
       id: 2,
-      name: "Payment to Super Cool Business",
+      name: "Problem Title 2",
       href: "#",
-      amount: "$10,000",
-      currency: "USD",
-      status: "success",
+      amount: "Phalia",
+      status: "Completed",
       date: "July 23, 2022",
       datetime: "2022-07-23",
     },
     {
       id: 3,
-      name: "Payment to ChainRaise",
+      name: "Problem Title 3",
       href: "#",
-      amount: "$15,000",
-      currency: "USD",
-      status: "success",
+      amount: "Bhadar",
+      status: "Under Review",
       date: "July 30, 2022",
       datetime: "2022-07-30",
     },
@@ -73,18 +76,20 @@ const Profile = () => {
                       <div>
                         <div className="flex items-center">
                           <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:leading-9">
-                            Welcome to ChainRaise
+                            Welcome Admin{"  "}
                             {/* {", " +
                               props.profile?.firstName +
                               " " +
                               props.profile?.lastName || "!"} */}
-                            Adil Abbas
+                            <span className="text-cr-primary">
+                              Abdul Rehman
+                            </span>
                           </h1>
                         </div>
-                        <dl className="group mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
+                        {/* <dl className="group mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
                           <dt className="sr-only">Account status</dt>
                           <dd className="mt-3 flex items-center text-sm font-medium capitalize text-gray-500 group-hover:opacity-10 sm:mr-6 sm:mt-0">
-                            <CheckCircleIcon
+                            <AiFillCheckCircle
                               className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
                               aria-hidden="true"
                             />
@@ -92,7 +97,7 @@ const Profile = () => {
                           </dd>
                           <dt className="sr-only">KYC/AML status</dt>
                           <dd className="mt-3 hidden items-center text-sm font-medium capitalize text-gray-500 group-hover:flex sm:mr-6 sm:mt-0">
-                            <CheckCircleIcon
+                            <AiFillCheckCircle
                               className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
                               aria-hidden="true"
                             />
@@ -100,17 +105,17 @@ const Profile = () => {
                           </dd>
                           <dt className="sr-only">Accreditation Status</dt>
                           <dd className="mt-3 hidden items-center  text-sm font-medium capitalize text-gray-500 group-hover:flex sm:mr-6 sm:mt-0">
-                            <CheckCircleIcon
+                            <AiFillCheckCircle
                               className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
                               aria-hidden="true"
                             />
                             No Accreditation Required
                           </dd>
-                        </dl>
+                        </dl> */}
                       </div>
                     </div>
                   </div>
-                  <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+                  {/* <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                     <Link to="/profile/update">
                       <button
                         type="button"
@@ -125,7 +130,7 @@ const Profile = () => {
                     >
                       View Account Summary
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -224,7 +229,7 @@ const Profile = () => {
                       >
                         <span className="flex items-center space-x-4">
                           <span className="flex flex-1 space-x-2 truncate">
-                            <BanknotesIcon
+                            <BsCurrencyExchange
                               className="h-5 w-5 flex-shrink-0 text-gray-400"
                               aria-hidden="true"
                             />
@@ -243,7 +248,7 @@ const Profile = () => {
                               </time>
                             </span>
                           </span>
-                          <ChevronRightIcon
+                          <FaAngleRight
                             className="h-5 w-5 flex-shrink-0 text-gray-400"
                             aria-hidden="true"
                           />
@@ -294,7 +299,7 @@ const Profile = () => {
                               className="bg-gray-50 px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
                               scope="col"
                             >
-                              Amount
+                              Location
                             </th>
                             <th
                               className="hidden bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:block"
@@ -319,7 +324,7 @@ const Profile = () => {
                                     href={transaction.href}
                                     className="group inline-flex space-x-2 truncate text-sm"
                                   >
-                                    <BanknotesIcon
+                                    <BsCurrencyExchange
                                       className="h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                       aria-hidden="true"
                                     />
