@@ -105,7 +105,11 @@ const FeaturedJobs = () => {
                   />
                   <div className="detailContainer px-5 py-3 pb-5">
                     <h1 className="fpName text-2xl uppercase font-bold font-sans ">
-                      {problem?.Name}
+                      {problem?.Name.length > 30 ? (
+                        <span>{problem?.Name.substring(0, 30)} ...</span>
+                      ) : (
+                        problem?.Name
+                      )}{" "}
                     </h1>
                     <p className="">
                       {problem?.Description.length > 100
@@ -119,7 +123,11 @@ const FeaturedJobs = () => {
                     </div>
                     <div className="mt-3 flex items-center text-[15px] space-x-1">
                       <VscTypeHierarchySub size={17} />
-                      <p className="mb-0">{problem?.Priority}</p>
+                      <p className="mb-0">
+                        {problem?.Priority === 0 && <span>Low </span>}
+                        {problem?.Priority === 1 && <span>Medium</span>}
+                        {problem?.Priority === 2 && <span>High</span>}
+                      </p>
                     </div>
                     {/* <div className="mt-2 flex space-x-1 flex-wrap">
                     {teacher.Subjects.map((subject, index) => {
@@ -133,7 +141,7 @@ const FeaturedJobs = () => {
                       );
                     })}
                   </div> */}
-                    <Link to={`/offerings/${problem?._id}`}>
+                    <Link to={`/problems/${problem?._id}`}>
                       <button className="mt-4 w-full py-2 bg-cr-primary text-white font-semibold rounded-sm">
                         View Problem
                       </button>

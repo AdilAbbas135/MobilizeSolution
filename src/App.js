@@ -34,8 +34,8 @@ function App() {
         {/* <Route exact path="/raise-funds" element={<Raisefunds />} /> */}
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/faq" element={<Faq />} />
-        <Route exact path="/offerings" element={<Offerings />} />
-        <Route exact path="/offerings/:name" element={<SingleProblem />} />
+        <Route exact path="/problems" element={<Offerings />} />
+        <Route exact path="/problems/:name" element={<SingleProblem />} />
 
         <Route exact path="/profile" element={<UpdateProfile />} />
         <Route exact path="/profile/update" element={<UpdateProfile />} />

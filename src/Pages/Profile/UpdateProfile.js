@@ -1,5 +1,5 @@
 import Header from "../../components/navigation/Header";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spin, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,13 +10,19 @@ import { FetchProfile } from "../../Redux/DashboardData";
 import { TiPlus } from "react-icons/ti";
 import { HiUserGroup } from "react-icons/hi";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { Tooltip } from "@mui/material";
+import axios from "axios";
+import { createAlert } from "../../Redux/Alert";
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("authtoken");
   const session = useSelector((state) => state.session.session);
   const dashboard = useSelector((state) => state.DashboardData);
   const error = useSelector((state) => state.DashboardData.error);
+  const [UploadPictureLoading, setUploadPictureLoading] = useState(false);
+  const profileImageRef = useRef();
   useEffect(() => {
     dispatch(FetchProfile());
     //eslint-disable-next-line
@@ -49,6 +55,42 @@ const UpdateProfile = () => {
 
     // More items...
   ];
+
+  const ShowPreview = async (e) => {
+    console.log(e.target.files);
+    if (e.target.files.length > 0) {
+      setUploadPictureLoading(true);
+      const data = new FormData();
+      data.append("file", e.target.files[0]);
+      await await axios
+        .post(
+          `${process.env.REACT_APP_BACKEND_URL}/account/upload-profilepicture`,
+          data,
+          { headers: { token: token } }
+        )
+        .then((response) => {
+          console.log(response);
+          dispatch(
+            createAlert({
+              type: "success",
+              message: "Profile Updated Successfully",
+            })
+          );
+          setUploadPictureLoading(false);
+          window.open("/profile/update", "_self");
+        })
+        .catch((error) => {
+          console.log(error);
+          setUploadPictureLoading(false);
+          dispatch(
+            createAlert({
+              type: "error",
+              message: "Something went wrong! Try Again",
+            })
+          );
+        });
+    }
+  };
   return (
     <>
       {dashboard.loading ? (
@@ -75,9 +117,31 @@ const UpdateProfile = () => {
                       <div className="flex items-center ">
                         <div>
                           <div className="flex items-center">
-                            <div className="h-20 w-20 rounded-full cursor-pointer shadow-xl flex items-center flex-col justify-center">
-                              <img src="/assets/icons8-user-96.png" alt="" />
-                            </div>
+                            <Tooltip
+                              title="Change Your Profile Picture"
+                              placement="top-start"
+                            >
+                              <div
+                                onClick={() => profileImageRef.current.click()}
+                                className="h-20 w-20 rounded-full overflow-hidden cursor-pointer shadow-xl flex items-center flex-col justify-center"
+                              >
+                                <img
+                                  src={
+                                    dashboard?.Details?.ProfilePicture
+                                      ? `${dashboard?.Details?.ProfilePicture}`
+                                      : "/assets/icons8-user-96.png"
+                                  }
+                                  alt=""
+                                />
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={ShowPreview}
+                                  ref={profileImageRef}
+                                  className="hidden"
+                                />
+                              </div>
+                            </Tooltip>
                             <div className="ml-5">
                               <h1 className=" text-2xl font-sans font-bold  text-text-color mb-0 ">
                                 {session?.user?.UserName ? (

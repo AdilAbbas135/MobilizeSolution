@@ -30,43 +30,6 @@ const SingleProblem = () => {
   const [btnloading, setbtnloading] = useState(false);
   const [Votes, setVotes] = useState(0);
   const [isAlreadyApplied, setisAlreadyApplied] = useState(false);
-  // const questions = [
-  //   {
-  //     profilepicture: "/assets/user.png",
-  //     name: "adil abbas",
-  //     datePosted: "29 april, 2020",
-  //     question: "this is my question",
-  //     desc: " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis dicta inventore rerum recusandae fuga at aut, placeat accusantium! Repellat illum nulla earum animi numquam repudiandae debitis voluptates? Minus vel hic atque impedit voluptatum, laudantium exercitationem incidunt nobis architecto. Aspernatur dolorem non eaque, maiores est maxime quam sit. Assumenda, minus voluptatibus.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/user.png",
-  //     name: "usama mumtaz",
-  //     datePosted: "10 august, 2020",
-  //     question: "title",
-  //     desc: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, laborum.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/user.png",
-  //     name: "Rehmana Tallat",
-  //     datePosted: "29 april, 2020",
-  //     question: "this is my question",
-  //     desc: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, laborum.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/user.png",
-  //     name: "Ustaad g",
-  //     datePosted: "29 april, 2022",
-  //     question: "Title is this",
-  //     desc: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, laborum.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/user.png",
-  //     name: "adil abbas",
-  //     datePosted: "29 april, 2020",
-  //     question: "this is my question",
-  //     desc: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, laborum.",
-  //   },
-  // ];
 
   const FetchReplies = async () => {
     await axios
@@ -109,7 +72,7 @@ const SingleProblem = () => {
         dispatch(
           createAlert({
             type: "success",
-            message: "Answer Posted Successfully",
+            message: "Posted Successfully",
           })
         );
         setbtnloading(false);
@@ -180,11 +143,11 @@ const SingleProblem = () => {
           <div className="my-10 sm:mx-6 lg:mx-auto lg:max-w-7xl">
             <div className="mt-5 grid grid-cols-10 gap-x-3">
               <div className="col-span-10 border-2 border-gray-200 bg-white p-5 rounded-sm">
-                <img
+                {/* <img
                   src={Discussion.bannerImage}
                   className="h-[300px] w-full object-cover bg-center aspect-1"
                   alt=""
-                />
+                /> */}
                 <div className=" py-5">
                   <div className="qaheader flex space-x-3">
                     <img
@@ -200,8 +163,8 @@ const SingleProblem = () => {
                     <div className="w-full">
                       <div className="w-full flex items-center justify-between">
                         <h1 className="font-semibold text-sm text-text_color_secondary_2 capitalize">
-                          {Discussion?.User[0]?.Email
-                            ? Discussion?.User[0]?.Email
+                          {Discussion?.UserDetails[0]?.UserName
+                            ? Discussion?.UserDetails[0]?.UserName
                             : "not found"}
                         </h1>
                         <div className="flex items-center gap-4">
@@ -226,6 +189,11 @@ const SingleProblem = () => {
                         {Discussion.Name}
                         {/* This is Problem Title */}
                       </h1>
+                      <img
+                        src={Discussion.featuredImage}
+                        className="h-[300px] w-[300px] object-cover bg-center aspect-1"
+                        alt=""
+                      />
                       <p className="mt-2">
                         {Discussion.Description}
                         {/* Lorem ipsum dolor, sit amet consectetur adipisicing
@@ -306,7 +274,7 @@ const SingleProblem = () => {
                   </div>
                   <div className="mt-5">
                     <h1 className=" text-xl font-bold text-text_color capitalize">
-                      Leave Your Comment
+                      Show Your Support
                     </h1>
                     {token ? (
                       <div className="mt-3 flex items-center space-x-2">
@@ -346,7 +314,7 @@ const SingleProblem = () => {
                                   sx={{ color: "white" }}
                                 />
                               ) : (
-                                <>Post Answer</>
+                                <>Support</>
                               )}
                             </Button>
                             {/* <div className="flex items-center space-x-2">
@@ -373,7 +341,7 @@ const SingleProblem = () => {
                   </div>
                   <div className="mt-5 bg-gray-100 py-3">
                     <h1 className="px-5 rounded-sm text-xl font-bold text-text_color_secondary capitalize">
-                      {Answers.length} Answers
+                      {Answers.length} People Supported
                     </h1>
                   </div>
                   {Answers.length > 0 &&
@@ -391,7 +359,7 @@ const SingleProblem = () => {
                             <div className="w-full">
                               <div className="w-full flex items-center justify-between">
                                 <h1 className="font-semibold text-[16px] text-text_color_secondary_2">
-                                  {Answer.User?.[0]?.Email}
+                                  {Answer.UserDetails?.[0]?.UserName}
                                 </h1>
                                 <p className="flex items-center text-sm text-text_color_secondary_2">
                                   <AiOutlineFieldTime

@@ -29,54 +29,6 @@ const Offerings = () => {
     setSearchData({ ...SearchData, Priority: value });
   };
 
-  // const AllProblems = [
-  //   {
-  //     profilepicture: "/assets/nightfall-logo.webp",
-  //     name: "adil abbas",
-  //     datePosted: "29 april, 2020",
-  //     question: "Problem Number 1",
-  //     location: "Phalia",
-  //     Salary: "50k",
-  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/descript-logo.webp",
-  //     name: "usama mumtaz",
-  //     datePosted: "10 august, 2020",
-  //     question: "Problem Number 2",
-  //     location: "Gujrat",
-  //     Salary: "80k",
-  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/mercury-logo.webp",
-  //     name: "Rehmana Tallat",
-  //     datePosted: "29 april, 2020",
-  //     question: "Problem Number 3",
-  //     location: "Jehlum",
-  //     Salary: "90k",
-  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/superside-logo.webp",
-  //     name: "Ustaad g",
-  //     datePosted: "29 april, 2022",
-  //     question: "Problem Number 4",
-  //     location: "Gujrat",
-  //     Salary: "90k",
-  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
-  //   },
-  //   {
-  //     profilepicture: "/assets/webflow-logo.webp",
-  //     name: "adil abbas",
-  //     datePosted: "29 april, 2020",
-  //     question: "Webflow Expert Urgently",
-  //     location: "Gujrat",
-  //     Salary: "90k",
-  //     desc: "We are Uxper. With a presence in more than 60 countries, we’re a growing global organization that helps amazing companies engage with customers through mobile messaging, email, voice and video.",
-  //   },
-  // ];
-
   const FetchAllProblems = async () => {
     await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/find/problems`)
@@ -242,14 +194,21 @@ const Offerings = () => {
                           </div>
                           <div className="col-span-7 qaheader flex space-x-3">
                             <img
-                              src={"./assets/logo.png"}
+                              src={
+                                question?.User[0]?.ProfilePicture
+                                  ? `${question?.User[0]?.ProfilePicture}`
+                                  : "./assets/logo.png"
+                              }
                               alt=""
                               className="h-[45px] w-[45px] rounded-full border-2 border-gray-300 p-[2px] object-cover"
                             />
                             <div className="w-full">
                               <div className="w-full flex items-center justify-between">
                                 <h1 className="font-semibold text-sm text-text_color_secondary_2">
-                                  By {question.User[0].Email}
+                                  By{" "}
+                                  {question?.UserDetails[0]?.UserName
+                                    ? question?.UserDetails[0]?.UserName
+                                    : "Not Found"}
                                 </h1>
 
                                 <p className="flex items-center text-sm text-text_color_secondary_2">
@@ -260,12 +219,20 @@ const Offerings = () => {
                                   {moment(question.createdAt).fromNow()}
                                 </p>
                               </div>
-                              <Link to={`/offerings/${question?._id}`}>
+                              <Link to={`/problems/${question?._id}`}>
                                 <h1 className="text-3xl font-bold text-text_color hover:text-cr-primary transition-all cursor-pointer capitalize">
                                   {question.Name}
                                 </h1>
                               </Link>
-                              <p className="mt-2">{question.Description}</p>
+                              <p className="mt-2">
+                                {question.Description.length > 500 ? (
+                                  <span>
+                                    {question.Description.substring(0, 500)} ...
+                                  </span>
+                                ) : (
+                                  question.Description
+                                )}{" "}
+                              </p>
                               <div className="mt-2 flex items-center space-x-2">
                                 <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md">
                                   <HiOutlineLocationMarker

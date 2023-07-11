@@ -8,6 +8,7 @@ const Header = () => {
   // const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const session = useSelector((state) => state.session.session);
+  const dashboard = useSelector((state) => state.DashboardData);
 
   // console.log(session);
   const navigation = {
@@ -35,8 +36,9 @@ const Header = () => {
       },
     ],
     pages: [
+      { name: "Home", href: "/" },
+      { name: "Problems", href: "/problems" },
       { name: "FAQ", href: "/faq" },
-      { name: "Problems", href: "/offerings" },
       { name: "Contact Us", href: "/contact" },
     ],
   };
@@ -76,13 +78,6 @@ const Header = () => {
                       </Link>
                     ))}
 
-                    <a
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-cr-secondary"
-                      href="/assets/NEW-Educational-Materials-ChainRaise-Portal-LLC-9_28_22.docx.pdf"
-                      target={"_blank"}
-                    >
-                      Learn
-                    </a>
                     {session.user.userId && (
                       <div className="my-auto h-8 border border-gray-300"></div>
                     )}
@@ -296,8 +291,8 @@ const Header = () => {
                         <img
                           className="h-12 w-12 cursor-pointer rounded-full"
                           src={
-                            session.user.image
-                              ? session.user.image
+                            dashboard?.Details?.ProfilePicture
+                              ? `${dashboard?.Details?.ProfilePicture}`
                               : "/assets/default_user.png"
                           }
                           alt=""
