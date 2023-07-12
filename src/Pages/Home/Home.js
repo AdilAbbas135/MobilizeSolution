@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Footer from "../../components/navigation/Footer/Footer";
 import Header from "../../components/navigation/Header";
 import { FiChevronRight } from "react-icons/fi";

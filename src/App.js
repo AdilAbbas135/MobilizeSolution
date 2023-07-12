@@ -5,15 +5,11 @@ import Contact from "./Pages/contact/Contact";
 import Faq from "./Pages/Faq/Faq";
 import Home from "./Pages/Home/Home";
 import Offerings from "./Pages/offering/Offerings";
-import Profile from "./Pages/Profile/Profile";
-import Raisefunds from "./Pages/raise-funds/Raisefunds";
 import UpdateProfile from "./Pages/Profile/UpdateProfile";
 import SingleProblem from "./Pages/offering/SingleProblem";
-import Invest from "./Pages/Invest/Invest";
 import { ToastContainer } from "react-toastify";
 import SendEmail from "./Pages/auth/Signup/sendemail";
 import Emailverification from "./Pages/auth/Signup/emailverification";
-import DonateToOffering from "./Pages/offering/Donate";
 import AdminSignInPage from "./Pages/admin/Signin";
 import AdminProfile from "./Pages/admin/Profile";
 import ViewProblemDetail from "./Pages/admin/ViewProblemDetail";
@@ -31,7 +27,6 @@ function App() {
           path="/admin-dashboard/:id"
           element={<ViewProblemDetail />}
         />
-        {/* <Route exact path="/raise-funds" element={<Raisefunds />} /> */}
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/faq" element={<Faq />} />
         <Route exact path="/problems" element={<Offerings />} />

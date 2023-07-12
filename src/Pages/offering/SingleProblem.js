@@ -16,6 +16,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { createAlert } from "../../Redux/Alert";
 import axios from "axios";
 import { FaVoteYea } from "react-icons/fa";
+import { BsArrowUpCircle } from "react-icons/bs";
 
 const SingleProblem = () => {
   const token = localStorage.getItem("authtoken");
@@ -129,6 +130,39 @@ const SingleProblem = () => {
     FetchReplies();
     //eslint-disable-next-line
   }, []);
+
+  const GiveReplyVote = async (AnswerId, Vote) => {
+    setbtnloading(true);
+    await axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/offerings/post-reply-vote?DiscussionId=${ProblemId}`,
+        { Vote: Vote, AnswerId },
+        { headers: { token: token } }
+      )
+      .then((res) => {
+        setbtnloading(false);
+        FetchReplies();
+        console.log(res);
+        dispatch(
+          createAlert({
+            type: "success",
+            message: "Vote Added Successfully",
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        setbtnloading(false);
+        dispatch(
+          createAlert({
+            type: "error",
+            message: error?.response?.data?.error
+              ? error?.response?.data?.error
+              : "Something went wrong",
+          })
+        );
+      });
+  };
 
   return (
     <>
@@ -358,7 +392,7 @@ const SingleProblem = () => {
                             </div>
                             <div className="w-full">
                               <div className="w-full flex items-center justify-between">
-                                <h1 className="font-semibold text-[16px] text-text_color_secondary_2">
+                                <h1 className="font-semibold text-[18px] text-text_color_secondary_2 uppercase">
                                   {Answer.UserDetails?.[0]?.UserName}
                                 </h1>
                                 <p className="flex items-center text-sm text-text_color_secondary_2">
@@ -370,7 +404,71 @@ const SingleProblem = () => {
                                   {/* 2 days ago */}
                                 </p>
                               </div>
-                              <p className="mt-2">{Answer?.Answer}</p>
+                              <p className="mt-2 text-[16px]">
+                                {Answer?.Answer}
+                              </p>
+                              <div className="flex items-center gap-3">
+                                <Button
+                                  onClick={() => GiveReplyVote(Answer?._id, 1)}
+                                  disabled={
+                                    btnloading ||
+                                    Answer?.Votes?.some(function (obj) {
+                                      return (
+                                        obj?.profileId ===
+                                        session?.user?.profileId
+                                      );
+                                    })
+                                      ? true
+                                      : false
+                                  }
+                                  className="bg-cr-primary text-white transition-all hover:bg-cr-primary hover:text-white px-5 py-2 rounded-sm shadow-none hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                  {btnloading ? (
+                                    <CircularProgress
+                                      size={18}
+                                      disableShrink
+                                      sx={{ color: "white" }}
+                                    />
+                                  ) : (
+                                    <span className=" flex items-center justify-center">
+                                      <AiOutlineArrowUp size={15} /> Up
+                                    </span>
+                                  )}
+                                </Button>
+
+                                <p className="mb-0 px-4 border-2 border-cr-primary font-bold text-[16px] text-cr-primary">
+                                  {Answer?.Votes?.length
+                                    ? Answer?.Votes?.length
+                                    : 0}
+                                </p>
+                                <Button
+                                  onClick={() => GiveReplyVote(Answer?._id, 0)}
+                                  disabled={
+                                    btnloading ||
+                                    Answer?.Votes?.some(function (obj) {
+                                      return (
+                                        obj?.profileId ===
+                                        session?.user?.profileId
+                                      );
+                                    })
+                                      ? true
+                                      : false
+                                  }
+                                  className="bg-red-500  text-white transition-all px-5 py-2 rounded-sm shadow-none hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                  {btnloading ? (
+                                    <CircularProgress
+                                      size={18}
+                                      disableShrink
+                                      sx={{ color: "white" }}
+                                    />
+                                  ) : (
+                                    <span className=" flex items-center justify-center">
+                                      <AiOutlineArrowDown size={15} /> Low
+                                    </span>
+                                  )}
+                                </Button>
+                              </div>
                             </div>
                           </div>
                         </div>
