@@ -141,18 +141,18 @@ const Header = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="hidden flex-1 items-center justify-end lg:block">
+                  <div className="flex-1 items-center justify-end lg:block">
                     <div className="flex space-x-5 justify-end">
                       <Link
                         to="/auth/signin"
-                        className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
+                        className=" text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
                       >
                         {/* eslint-disable-next-line */}
                         <a>Sign In </a>
                       </Link>
                       <Link
                         to="/auth/signup"
-                        className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
+                        className="text-sm font-medium text-gray-700 hover:text-gray-800 lg:ml-8 lg:block"
                       >
                         Sign Up
                       </Link>
