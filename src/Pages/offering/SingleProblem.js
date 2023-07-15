@@ -39,6 +39,7 @@ const SingleProblem = () => {
         { profileId: session?.user?.profileId }
       )
       .then((result) => {
+        console.log("the replies are");
         console.log(result);
         setDiscussion(result.data.Problem);
         setAnswers(result.data.Replies);
@@ -186,10 +187,9 @@ const SingleProblem = () => {
                   <div className="qaheader flex space-x-3">
                     <img
                       src={
-                        // Discussion?.Student[0]?.ProfilePicture
-                        //   ? Discussion?.Student[0]?.ProfilePicture
-                        //   :
-                        "/assets/logo.png"
+                        Discussion?.User[0]?.ProfilePicture
+                          ? Discussion?.User[0]?.ProfilePicture
+                          : "/assets/logo.png"
                       }
                       alt=""
                       className="h-[45px] w-[45px] rounded-full border-2 border-gray-300 p-[2px]"
@@ -249,7 +249,11 @@ const SingleProblem = () => {
                       <>
                         <div className="mt-3 flex items-center space-x-2">
                           <img
-                            src={"/assets/logo.png"}
+                            src={
+                              Discussion?.User[0]?.ProfilePicture
+                                ? Discussion?.User[0]?.ProfilePicture
+                                : "/assets/logo.png"
+                            }
                             alt=""
                             className="h-[50px] w-[50px] rounded-full border-2 border-gray-300 p-[2px]"
                           />
@@ -314,10 +318,9 @@ const SingleProblem = () => {
                       <div className="mt-3 flex items-center space-x-2">
                         <img
                           src={
-                            // Discussion?.Student[0]?.ProfilePicture
-                            //   ? Discussion?.Student[0]?.ProfilePicture
-                            //   :
-                            "/assets/logo.png"
+                            Discussion?.User[0]?.ProfilePicture
+                              ? Discussion?.User[0]?.ProfilePicture
+                              : "/assets/logo.png"
                           }
                           alt=""
                           className="h-[50px] w-[50px] rounded-full border-2 border-gray-300 p-[2px]"
@@ -385,7 +388,11 @@ const SingleProblem = () => {
                           <div className="qaheader flex space-x-3">
                             <div className="flex flex-col space-y-2">
                               <img
-                                src={"/assets/logo.png"}
+                                src={
+                                  Answer?.User[0]?.ProfilePicture
+                                    ? Answer?.User[0]?.ProfilePicture
+                                    : "/assets/logo.png"
+                                }
                                 alt=""
                                 className="h-[45px] w-[45px] rounded-full border-2 border-gray-300 p-[2px]"
                               />

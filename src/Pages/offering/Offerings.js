@@ -17,16 +17,21 @@ import { Button } from "@material-tailwind/react";
 import { CircularProgress } from "@mui/material";
 import { MdOutlineDoneAll, MdPending } from "react-icons/md";
 import { SiProgress } from "react-icons/si";
+import { Cities } from "../../data";
 
 const Offerings = () => {
   const dispatch = useDispatch();
   const [AllProblems, setAllProblems] = useState([]);
+  const [Locations, setLocations] = useState([]);
   const [loading, setloading] = useState(true);
   const [SearchData, setSearchData] = useState({});
   const [SearchBtnLoading, setSearchBtnLoading] = useState(false);
 
   const ChangePriority = (value) => {
     setSearchData({ ...SearchData, Priority: value });
+  };
+  const ChangeCity = (value) => {
+    setSearchData({ ...SearchData, Location: value });
   };
 
   const FetchAllProblems = async () => {
@@ -52,6 +57,22 @@ const Offerings = () => {
     FetchAllProblems();
     //eslint-disable-next-line
   }, []);
+
+  // const CheckLocation = async (problem) => {
+  //   const Find = await Locations.some((location) => {
+  //     console.log("i am calling location");
+  //     console.log(location);
+  //     return location.Location.toLowerCase() === problem.Location.toLowerCase();
+  //   });
+  //   console.log(Find);
+  //   if (Find === false) {
+  //     setLocations((oldArray) => [...oldArray, problem]);
+  //   }
+  // };
+  // useEffect(() => {
+  //   AllProblems.forEach(CheckLocation);
+  //   //eslint-disable-next-line
+  // }, [AllProblems]);
 
   const SearchProblem = async () => {
     setSearchBtnLoading(true);
@@ -87,6 +108,7 @@ const Offerings = () => {
       ) : (
         <div className="bg-gray-100">
           <Header />
+
           <div className="pb-10">
             <div className="w-full mx-auto max-w-7xl pb-10 rounded-b-md">
               <div className="mt-10">
@@ -114,7 +136,7 @@ const Offerings = () => {
                     {/* <input type={"text"} placeholder="Prolem Title" /> */}
                   </div>
                   <div className="w-full flex items-center space-x-2 border-r-2">
-                    <Input
+                    {/* <Input
                       type="text"
                       size="large"
                       placeholder="Enter Location"
@@ -127,6 +149,21 @@ const Offerings = () => {
                         });
                       }}
                       prefix={<IoMdLocate className="text-2xl text-gray-400" />}
+                    /> */}
+                    <Select
+                      allowClear
+                      showSearch
+                      // defaultValue="Select City"
+                      placeholder="Select City"
+                      style={{ width: "100%" }}
+                      onChange={ChangeCity}
+                      size="large"
+                      options={Cities.map((city) => {
+                        return {
+                          value: city,
+                          label: city,
+                        };
+                      })}
                     />
                   </div>
                   <div className="w-full flex items-center space-x-2 border-r-2">

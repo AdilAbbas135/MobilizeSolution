@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { LoadingOutlined } from "@ant-design/icons";
 import { createAlert } from "../../Redux/Alert";
 import { Link } from "react-router-dom";
+import { Cities } from "../../data";
 
 const OfferingsProfile = () => {
   let submitBtn = useRef();
@@ -47,7 +48,9 @@ const OfferingsProfile = () => {
       Priority: value,
     });
   };
-
+  const ChangeCity = (value) => {
+    setofferingdata({ ...offeringdata, Location: value });
+  };
   const AddOffering = async (e) => {
     e.preventDefault();
 
@@ -192,7 +195,22 @@ const OfferingsProfile = () => {
                         </div>
                         <div className="col-span-2">
                           <label>Location</label>
-                          <input
+                          <Select
+                            allowClear
+                            showSearch
+                            // defaultValue="Select City"
+                            placeholder="Select City"
+                            style={{ width: "100%" }}
+                            onChange={ChangeCity}
+                            size="large"
+                            options={Cities.map((city) => {
+                              return {
+                                value: city,
+                                label: city,
+                              };
+                            })}
+                          />
+                          {/* <input
                             required
                             type="text"
                             value={offeringdata?.Location}
@@ -203,7 +221,7 @@ const OfferingsProfile = () => {
                               });
                             }}
                             className="mt-1 mb-1 w-full  rounded p-2"
-                          />
+                          /> */}
                         </div>
                         <div className="col-span-2">
                           {/* <label>
