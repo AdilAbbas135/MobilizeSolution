@@ -184,7 +184,7 @@ const SingleProblem = () => {
                   alt=""
                 /> */}
                 <div className=" py-5">
-                  <div className="qaheader flex space-x-3">
+                  <div className="qaheader md:flex md:space-x-3">
                     <img
                       src={
                         Discussion?.User[0]?.ProfilePicture
@@ -195,14 +195,14 @@ const SingleProblem = () => {
                       className="h-[45px] w-[45px] rounded-full border-2 border-gray-300 p-[2px]"
                     />
                     <div className="w-full">
-                      <div className="w-full flex items-center justify-between">
+                      <div className="w-full pl-1 md:pl-0 flex items-center justify-between">
                         <h1 className="font-semibold text-sm text-text_color_secondary_2 capitalize">
                           {Discussion?.UserDetails[0]?.UserName
                             ? Discussion?.UserDetails[0]?.UserName
                             : "not found"}
                         </h1>
                         <div className="flex items-center gap-4">
-                          <p className="flex items-center text-sm text-text_color_secondary_2">
+                          <p className="flex items-center text-[12px] md:text-sm text-text_color_secondary_2">
                             <AiOutlineFieldTime
                               size={20}
                               className="mr-1 text-cr-primary"
@@ -210,7 +210,7 @@ const SingleProblem = () => {
                             {moment(Discussion?.createdAt).fromNow()}
                           </p>
 
-                          <p className="flex items-center text-sm text-text_color_secondary_2">
+                          <p className="flex items-center text-[12px] md:text-sm text-text_color_secondary_2">
                             <FaVoteYea
                               size={20}
                               className="mr-1 text-cr-primary"
@@ -219,13 +219,13 @@ const SingleProblem = () => {
                           </p>
                         </div>
                       </div>
-                      <h1 className="text-3xl font-bold text-text_color capitalize">
+                      <h1 className="text-xl md:text-3xl font-bold text-text_color capitalize">
                         {Discussion.Name}
                         {/* This is Problem Title */}
                       </h1>
                       <img
                         src={Discussion.featuredImage}
-                        className="h-[300px] w-[300px] object-cover bg-center aspect-1"
+                        className="h-[300px] w-full md:w-[300px] object-cover bg-center aspect-1"
                         alt=""
                       />
                       <p className="mt-2">

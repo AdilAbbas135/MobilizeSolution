@@ -177,7 +177,7 @@ const UpdateProfile = () => {
                     </div>
                   </div>
 
-                  <div className="mx-auto mt-10 mb-10 max-w-6xl">
+                  <div className="mx-auto px-5 md:px-0 mt-10 mb-10 max-w-6xl">
                     <h2 className="text-lg font-medium leading-6 text-gray-900">
                       Overview
                     </h2>
@@ -225,16 +225,18 @@ const UpdateProfile = () => {
                     </div>
                   </div>
 
-                  <Tabs
-                    defaultActiveKey="1"
-                    type="line"
-                    size={"large"}
-                    tabBarGutter={30}
-                  >
-                    <Tabs.TabPane key={"Offerings"} tab="My Problems">
-                      <OfferingsProfile />
-                    </Tabs.TabPane>
-                  </Tabs>
+                  <div className="px-5 md:px-0">
+                    <Tabs
+                      defaultActiveKey="1"
+                      type="line"
+                      size={"large"}
+                      tabBarGutter={30}
+                    >
+                      <Tabs.TabPane key={"Offerings"} tab="My Problems">
+                        <OfferingsProfile />
+                      </Tabs.TabPane>
+                    </Tabs>
+                  </div>
                 </div>
               </div>
             </main>

@@ -141,76 +141,77 @@ const OfferingsProfile = () => {
           <h2 className="ml-5">Loading your Problems</h2>
         </div>
       ) : (
-        <div
-          // style={{
-          //   boxShadow:
-          //     "0 4px 5px -2px rgb(0 0 0 / 20%), 0 7px 10px 1px rgb(0 0 0 / 14%), 0 2px 16px 1px rgb(0 0 0 / 12%)",
-          // }}
-          className="w-full shadow-md rounded-lg border bg-white px-5 py-5"
-        >
-          <div className="flex p-4 justify-between">
-            <div className="w-3/5">
-              <h1 className="font-large text-lg font-bold text-black">
-                Your Problems
-              </h1>
-              <p>All of Your Problems Posted By lies here</p>
-            </div>
+        <div className="bg-white">
+          <div
+            // style={{
+            //   boxShadow:
+            //     "0 4px 5px -2px rgb(0 0 0 / 20%), 0 7px 10px 1px rgb(0 0 0 / 14%), 0 2px 16px 1px rgb(0 0 0 / 12%)",
+            // }}
+            className="w-full shadow-md rounded-lg border bg-white px-5 py-5"
+          >
+            <div className="md:flex p-4 md:justify-between">
+              <div className="md:w-3/5">
+                <h1 className="font-large text-lg font-bold text-black">
+                  Your Problems
+                </h1>
+                <p>All of Your Problems Posted By lies here</p>
+              </div>
 
-            <div className="w-1/5 p-4 flex justify-end">
-              <button
-                onClick={showModal}
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Add New Problem
-              </button>
-              <Modal
-                title="Add New Problem"
-                open={open}
-                onOk={handleOk}
-                onCancel={() => setOpen(false)}
-                confirmLoading={confirmLoading}
-                width={900}
-                style={{ top: 20 }}
-                okText="Add New Problem"
-              >
-                <div>
-                  <form onSubmit={(e) => AddOffering(e)}>
-                    <div className="bg-white px-4 pb-4 sm:p-6 sm:pb-4">
-                      <dl className="space-y-2 md:grid md:grid-cols-4 md:gap-x-5 md:gap-y-5">
-                        <div className="col-span-4">
-                          <label>Problem Title</label>
-                          <input
-                            required
-                            type="text"
-                            name="offering-name"
-                            value={offeringdata.Name}
-                            onChange={(e) => {
-                              setofferingdata({
-                                ...offeringdata,
-                                Name: e.target.value,
-                              });
-                            }}
-                            className="mt-1 mb-1 w-full  rounded p-2"
-                          />
-                        </div>
-                        <div className="col-span-2">
-                          <label>Location</label>
-                          <Select
-                            allowClear
-                            showSearch
-                            // defaultValue="Select City"
-                            placeholder="Select City"
-                            style={{ width: "100%" }}
-                            onChange={ChangeCity}
-                            size="large"
-                            options={Cities.map((city) => {
-                              return {
-                                value: city,
-                                label: city,
-                              };
-                            })}
-                          />
-                          {/* <input
+              <div className="md:w-1/5 pl-0 p-4 md:flex md:justify-end">
+                <button
+                  onClick={showModal}
+                  className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  Add New Problem
+                </button>
+                <Modal
+                  title="Add New Problem"
+                  open={open}
+                  onOk={handleOk}
+                  onCancel={() => setOpen(false)}
+                  confirmLoading={confirmLoading}
+                  width={900}
+                  style={{ top: 20 }}
+                  okText="Add New Problem"
+                >
+                  <div>
+                    <form onSubmit={(e) => AddOffering(e)}>
+                      <div className="bg-white px-4 pb-4 sm:p-6 sm:pb-4">
+                        <dl className="space-y-2 md:grid md:grid-cols-4 md:gap-x-5 md:gap-y-5">
+                          <div className="col-span-4">
+                            <label>Problem Title</label>
+                            <input
+                              required
+                              type="text"
+                              name="offering-name"
+                              value={offeringdata.Name}
+                              onChange={(e) => {
+                                setofferingdata({
+                                  ...offeringdata,
+                                  Name: e.target.value,
+                                });
+                              }}
+                              className="mt-1 mb-1 w-full  rounded p-2"
+                            />
+                          </div>
+                          <div className="col-span-2">
+                            <label>Location</label>
+                            <Select
+                              allowClear
+                              showSearch
+                              // defaultValue="Select City"
+                              placeholder="Select City"
+                              style={{ width: "100%" }}
+                              onChange={ChangeCity}
+                              size="large"
+                              options={Cities.map((city) => {
+                                return {
+                                  value: city,
+                                  label: city,
+                                };
+                              })}
+                            />
+                            {/* <input
                             required
                             type="text"
                             value={offeringdata?.Location}
@@ -222,9 +223,9 @@ const OfferingsProfile = () => {
                             }}
                             className="mt-1 mb-1 w-full  rounded p-2"
                           /> */}
-                        </div>
-                        <div className="col-span-2">
-                          {/* <label>
+                          </div>
+                          <div className="col-span-2">
+                            {/* <label>
                             Priority (0 for Low, 1 For Medium, 2 For High)
                           </label>
                           <input
@@ -239,79 +240,80 @@ const OfferingsProfile = () => {
                             }}
                             className="mt-1 mb-1 w-full  rounded p-2"
                           /> */}
-                          <label className="">SelectPriority</label>
-                          <Select
-                            defaultValue="Select"
-                            size="large"
-                            aria-required
-                            style={{ width: "100%", marginTop: "4px" }}
-                            className=" w-full  rounded p-2"
-                            onChange={ChangePriority}
-                            options={[
-                              { value: "0", label: "Low" },
-                              { value: "1", label: "Medium" },
-                              { value: "2", label: "High" },
-                            ]}
-                          />
-                        </div>
+                            <label className="">SelectPriority</label>
+                            <Select
+                              defaultValue="Select"
+                              size="large"
+                              aria-required
+                              style={{ width: "100%", marginTop: "4px" }}
+                              className=" w-full  rounded p-2"
+                              onChange={ChangePriority}
+                              options={[
+                                { value: "0", label: "Low" },
+                                { value: "1", label: "Medium" },
+                                { value: "2", label: "High" },
+                              ]}
+                            />
+                          </div>
 
-                        <div className="col-span-4">
-                          <label>Description</label>
-                          <textarea
-                            required
-                            rows={6}
-                            value={offeringdata.Description}
-                            onChange={(e) => {
-                              setofferingdata({
-                                ...offeringdata,
-                                Description: e.target.value,
-                              });
-                            }}
-                            className="mt-1 mb-1 w-full  rounded p-2"
-                          ></textarea>
-                        </div>
+                          <div className="col-span-4">
+                            <label>Description</label>
+                            <textarea
+                              required
+                              rows={6}
+                              value={offeringdata.Description}
+                              onChange={(e) => {
+                                setofferingdata({
+                                  ...offeringdata,
+                                  Description: e.target.value,
+                                });
+                              }}
+                              className="mt-1 mb-1 w-full  rounded p-2"
+                            ></textarea>
+                          </div>
 
-                        <div>
-                          <label>Featured Image</label>
-                          <input
-                            required
-                            type="file"
-                            name="myfile"
-                            accept="image/*"
-                            onChange={(e) =>
-                              setfeaturedImage(e.target.files[0])
-                            }
-                          />
-                        </div>
-                      </dl>
-                    </div>
-                    <div className="hidden bg-gray-200 px-4 py-3 text-right">
-                      {/* <button
+                          <div>
+                            <label>Featured Image</label>
+                            <input
+                              required
+                              type="file"
+                              name="myfile"
+                              accept="image/*"
+                              onChange={(e) =>
+                                setfeaturedImage(e.target.files[0])
+                              }
+                            />
+                          </div>
+                        </dl>
+                      </div>
+                      <div className="hidden bg-gray-200 px-4 py-3 text-right">
+                        {/* <button
                       type="button"
                       className="mr-2 rounded bg-gray-500 py-2 px-4 text-white hover:bg-gray-700"
                       //   onClick={() => toggleModal(false)}
                     >
                       <i className="fas fa-times"></i> Cancel
                     </button> */}
-                      <button
-                        ref={(elem) => (submitBtn = elem)}
-                        type="submit"
-                        className="hidden mr-2 rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-700"
-                      >
-                        <i className="fas fa-plus"></i> Create
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </Modal>
+                        <button
+                          ref={(elem) => (submitBtn = elem)}
+                          type="submit"
+                          className="hidden mr-2 rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-700"
+                        >
+                          <i className="fas fa-plus"></i> Create
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </Modal>
+              </div>
             </div>
           </div>
           {allofferings.length > 0 ? (
             <div className="p-2">
-              <table className="min-w-full rounded border">
+              <table className="md:min-w-full table rounded border">
                 <thead>
                   <tr>
-                    <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
+                    <th className="hidden md:block border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                       S#
                     </th>
                     <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
@@ -320,10 +322,10 @@ const OfferingsProfile = () => {
                     <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                       Priority
                     </th>
-                    <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
+                    <th className="hidden md:block border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                       Location
                     </th>
-                    <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
+                    <th className="hidden md:block border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                       Status
                     </th>
                     <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
@@ -334,7 +336,7 @@ const OfferingsProfile = () => {
                 <tbody>
                   {allofferings.map((offering, index) => (
                     <tr className="border-b" key={index}>
-                      <td className="py-3 px-5">
+                      <td className="hidden md:block py-3 px-5">
                         <div className="flex">
                           <div className="pl-2 pt-1">{index + 1}</div>
                         </div>
@@ -357,9 +359,11 @@ const OfferingsProfile = () => {
                           </span>
                         )}
                       </td>
-                      <td className="py-3 px-5">{offering.Location}</td>
+                      <td className="py-3 px-5 hidden md:block">
+                        {offering.Location}
+                      </td>
 
-                      <td className="py-3 px-5">
+                      <td className="py-3 px-5 hidden md:block">
                         {offering?.Status === 0 && (
                           <span className="bg-red-500 py-2 px-3 rounded-md text-white text-sm font-semibold">
                             Pending
@@ -377,7 +381,7 @@ const OfferingsProfile = () => {
                         )}
                       </td>
 
-                      <td className="py-3 px-5 flex items-center gap-x-2">
+                      <td className="py-3 md:px-5 flex items-center gap-x-2">
                         {/* eslint-disable-next-line */}
                         <Link
                           to={`/problems/${offering._id}`}

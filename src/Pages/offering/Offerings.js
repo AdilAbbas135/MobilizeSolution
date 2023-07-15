@@ -116,7 +116,7 @@ const Offerings = () => {
                   FIND PROBLEMS AS YOU WANT
                 </h1>
                 <div
-                  className={`mt-5 h-16 bg-white md:flex items-center space-x-2 text-black justify-between px-5 rounded-md w-full`}
+                  className={`mt-5 h-fit px-5 py-4 bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4 text-black justify-between  rounded-md w-full`}
                 >
                   <div className="w-full flex items-center space-x-2 border-r-2">
                     <Input
@@ -132,24 +132,8 @@ const Offerings = () => {
                         <AiOutlineSearch className="text-2xl text-gray-400" />
                       }
                     />
-
-                    {/* <input type={"text"} placeholder="Prolem Title" /> */}
                   </div>
                   <div className="w-full flex items-center space-x-2 border-r-2">
-                    {/* <Input
-                      type="text"
-                      size="large"
-                      placeholder="Enter Location"
-                      className="w-full"
-                      value={SearchData?.Location}
-                      onChange={(e) => {
-                        setSearchData({
-                          ...SearchData,
-                          Location: e.target.value,
-                        });
-                      }}
-                      prefix={<IoMdLocate className="text-2xl text-gray-400" />}
-                    /> */}
                     <Select
                       allowClear
                       showSearch
@@ -167,7 +151,7 @@ const Offerings = () => {
                     />
                   </div>
                   <div className="w-full flex items-center space-x-2 border-r-2">
-                    <HiBookOpen className="text-2xl text-gray-400" />
+                    {/* <HiBookOpen className="text-2xl text-gray-400" /> */}
                     <Select
                       allowClear
                       defaultValue="Select Priority"
@@ -180,18 +164,6 @@ const Offerings = () => {
                         { value: "2", label: "High" },
                       ]}
                     />
-                    {/* <input
-                      type={"text"}
-                      placeholder="Select Priority"
-                      className="w-full"
-                      value={SearchData?.Priority}
-                      onChange={(e) => {
-                        setSearchData({
-                          ...SearchData,
-                          Priority: e.target.value,
-                        });
-                      }}
-                    /> */}
                   </div>
 
                   <Button
@@ -222,14 +194,14 @@ const Offerings = () => {
                           key={index}
                           className="border-b py-5 px-5 grid grid-cols-10 gap-3 bg-gray-100 rounded-md"
                         >
-                          <div className="col-span-3">
+                          <div className="col-span-10 md:col-span-3">
                             <img
                               src={question?.featuredImage}
                               className="h-full w-full object-cover"
                               alt=""
                             />
                           </div>
-                          <div className="col-span-7 qaheader flex space-x-3">
+                          <div className="col-span-10 md:col-span-7 qaheader md:flex gap-x-3">
                             <img
                               src={
                                 question?.User[0]?.ProfilePicture
@@ -257,11 +229,11 @@ const Offerings = () => {
                                 </p>
                               </div>
                               <Link to={`/problems/${question?._id}`}>
-                                <h1 className="text-3xl font-bold text-text_color hover:text-cr-primary transition-all cursor-pointer capitalize">
+                                <h1 className="text-xl md:text-3xl font-bold text-text_color hover:text-cr-primary transition-all cursor-pointer capitalize">
                                   {question.Name}
                                 </h1>
                               </Link>
-                              <p className="mt-2">
+                              <p className="mt-2 text-sm md:text-lg">
                                 {question.Description.length > 500 ? (
                                   <span>
                                     {question.Description.substring(0, 500)} ...
@@ -270,8 +242,8 @@ const Offerings = () => {
                                   question.Description
                                 )}{" "}
                               </p>
-                              <div className="mt-2 flex items-center space-x-2">
-                                <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md">
+                              <div className="mt-2 flex items-center flex-wrap gap-x-2">
+                                <p className="bg-[rgba(0,116,86,.05)] font-semibold text-cr-primary w-fit flex items-center px-4 py-1 rounded-md text-sm md:text-lg">
                                   <HiOutlineLocationMarker
                                     size={18}
                                     className="mr-1"

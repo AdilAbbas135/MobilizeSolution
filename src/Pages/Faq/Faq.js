@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Collapse } from "antd";
 import Header from "../../components/navigation/Header";
 import Footer from "../../components/navigation/Footer/Footer";
@@ -6,19 +6,16 @@ import Footer from "../../components/navigation/Footer/Footer";
 const { Panel } = Collapse;
 
 const Faq = () => {
-  useEffect(() => {
-    document.title = "FAQ | Chainraise";
-  }, []);
   return (
     <>
       <Header />
-      <div className="mt-5 mb-10">
+      <div className="mt-5 mb-10 px-5 md-px-0">
         <div className="m-auto flex w-full max-w-5xl flex-col justify-center">
           <div className="m-auto">
             <h1 className="text-center font-sans text-xl font-bold text-[#20DEFD]">
               For Users
             </h1>
-            <h1 className="font-sans text-[50px] font-bold text-black">
+            <h1 className="font-sans text-lg md:text-[50px] font-bold text-black">
               Frequently Asked Questions
             </h1>
           </div>

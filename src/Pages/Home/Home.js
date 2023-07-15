@@ -5,32 +5,6 @@ import { FiChevronRight } from "react-icons/fi";
 import FeaturedProblems from "../../components/FeatruredProblems/FeaturedProblems";
 
 const Home = () => {
-  // const navigate = useNavigate();
-  // const [allofferings, setallofferings] = useState([]);
-  // const [loading, setloading] = useState(true);
-  // useEffect(() => {
-  //   document.title = "";
-  //   axios
-  //     .get("http://localhost:5000/api/offerings")
-  //     .then((result) => {
-  //       console.log(result?.data?.offerings);
-  //       setallofferings(result?.data?.offerings);
-  //       setloading(false);
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Something Went Wrong! Reload the Page", {
-  //         position: "top-center",
-  //         autoClose: 3000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "light",
-  //       });
-  //     });
-  // }, []);
-
   const perks = [
     {
       name: "Post Your Problem",
@@ -60,10 +34,6 @@ const Home = () => {
         {/* Hero */}
         <div className="mx-auto flex max-w-7xl flex-col border-b border-gray-200 lg:border-0">
           <div className="relative">
-            {/* <div
-              aria-hidden="true"
-              className="absolute hidden h-full w-1/2 bg-gray-100 lg:block"
-            /> */}
             <div className="relative bg-gray-100 lg:bg-transparent">
               <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:grid lg:grid-cols-1">
                 {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-2"> */}
@@ -72,10 +42,10 @@ const Home = () => {
                     <div className="flex w-full justify-center">
                       {/* eslint-disable-next-line */}
                       <div className="mx-auto inline-flex items-center rounded-full border border-gray-700 bg-transparent p-1 pr-2 sm:text-base lg:text-sm xl:text-base">
-                        <span className="rounded-full bg-cr-primary px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
+                        <span className="rounded-full bg-cr-primary px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white w-fit text-center">
                           Need Help?
                         </span>
-                        <span className="ml-4 text-sm text-stone-900">
+                        <span className="ml-4 text-sm text-stone-900 text-center">
                           Post Your Problem! Get it Solved
                         </span>
                         <FiChevronRight
@@ -119,7 +89,7 @@ const Home = () => {
           className="border-t border-gray-200 bg-gray-50 mt-10"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 py-10 lg:px-8">
-            <h1 className="font-bold text-cr-primary text-3xl text-center uppercase">
+            <h1 className="font-bold text-cr-primary text-xl md:text-3xl text-center uppercase">
               Our Simple Process Includes
             </h1>
             <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
