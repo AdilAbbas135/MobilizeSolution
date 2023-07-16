@@ -16,7 +16,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { createAlert } from "../../Redux/Alert";
 import axios from "axios";
 import { FaVoteYea } from "react-icons/fa";
-import { BsArrowUpCircle } from "react-icons/bs";
 
 const SingleProblem = () => {
   const token = localStorage.getItem("authtoken");
@@ -225,7 +224,7 @@ const SingleProblem = () => {
                       </h1>
                       <img
                         src={Discussion.featuredImage}
-                        className="h-[300px] w-full md:w-[300px] object-cover bg-center aspect-1"
+                        className="h-[300px] w-full md:w-full md:max-w-[1280px] object-cover bg-center aspect-1"
                         alt=""
                       />
                       <p className="mt-2">

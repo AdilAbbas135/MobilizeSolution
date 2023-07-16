@@ -80,9 +80,11 @@ const FeaturedJobs = () => {
           <h1 className="pb-1 w-fit h-fit text-2xl md:text-3xl font-bold font-sans uppercase border-b-2 border-search_color">
             Latest Problems Around You
           </h1>
-          <button className="hidden md:block px-10 py-2 bg-hover_color text-white font-semibold rounded-sm">
-            View More
-          </button>
+          <Link to={"/problems"}>
+            <button className="hidden md:block px-10 py-2 bg-cr-primary text-white font-semibold rounded-sm">
+              View More
+            </button>
+          </Link>
         </div>
         {loading ? (
           <div className="flex items-center gap-2">
