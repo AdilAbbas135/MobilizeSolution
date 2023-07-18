@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
+import { FcHighPriority } from "react-icons/fc";
 
 const AllProblems = () => {
   const currentMode = "light";
@@ -16,22 +17,22 @@ const AllProblems = () => {
     (state) => state.AdminDashboardData?.Problems
   );
 
-  const deleteOffering = async (id) => {
-    await toast.promise(
-      axios
-        .post("http://localhost:5000/api/offerings/deleteoffering", { id })
-        .then((result) => {
-          // FetchAllProblems();
-        })
-        .catch((err) => {}),
-      {
-        pending: "Deleting Offering Please Wait",
-        success: "Offering Deleted Successfully",
-        error: "Error in Deleting offering! Try Again",
-      },
-      { autoClose: 3000, closeOnClick: true, pauseOnHover: false }
-    );
-  };
+  // const deleteOffering = async (id) => {
+  //   await toast.promise(
+  //     axios
+  //       .post("http://localhost:5000/api/offerings/deleteoffering", { id })
+  //       .then((result) => {
+  //         // FetchAllProblems();
+  //       })
+  //       .catch((err) => {}),
+  //     {
+  //       pending: "Deleting Offering Please Wait",
+  //       success: "Offering Deleted Successfully",
+  //       error: "Error in Deleting offering! Try Again",
+  //     },
+  //     { autoClose: 3000, closeOnClick: true, pauseOnHover: false }
+  //   );
+  // };
 
   const DataGridStyles = {
     "& .MuiButtonBase-root": {
@@ -199,7 +200,12 @@ const AllProblems = () => {
               currentMode === "dark" ? "bg-gray-800" : "bg-gray-200"
             } w-full h-full flex justify-center items-center px-5 font-semibold`}
           >
-            {cellValues.row?.votes?.length}
+            {cellValues.row?.votes?.length}{" "}
+            <span className="block">
+              {cellValues.row?.votes?.length > 5 && (
+                <FcHighPriority size={16} />
+              )}
+            </span>
           </div>
         );
       },

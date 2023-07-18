@@ -38,7 +38,7 @@ const OfferingsProfile = () => {
   };
 
   const handleOk = () => {
-    setConfirmLoading(true);
+    // setConfirmLoading(true);
     submitBtn.click();
   };
 

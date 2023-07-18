@@ -59,25 +59,10 @@ const Home = () => {
                       <span className="font-bold text-cr-primary">
                         Mobilize: Enhancing Life
                       </span>{" "}
-                      {/* <span className="bg-gradient-to-r from-cr-secondary to-cr-primary bg-clip-text pb-3 font-extrabold text-transparent">
-                        Memorable Moments
-                      </span> */}
                     </h1>
-                    {/* <p className="mt-3 text-center text-base text-stone-900 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                      Join Mobilize Solutions now and Share your problems with
-                      us and we will solve them for you
-                    </p> */}
                   </div>
                 </div>
               </div>
-              {/* 
-              <div className="h-48 p-2 sm:h-64 lg:absolute lg:top-0 lg:right-0 lg:h-full lg:w-1/2">
-                <img
-                  src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGl2ZXJzaXR5JTIwYnVzaW5lc3N8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60"
-                  alt=""
-                  className="hidden h-full rounded-md object-cover object-center"
-                />
-              </div> */}
             </div>
           </div>
         </div>

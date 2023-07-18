@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 const SendEmail = () => {
   return (
     <>
-      {/* <Head>
-        <title>Verification email sent- TeachersHub</title>
-        <meta name="description" content="Find the Best Teachers Near You" />
-      </Head> */}
       <div
         className={`LoginWrapper h-screen w-screen overflow-hidden flex items-center justify-center`}
       >

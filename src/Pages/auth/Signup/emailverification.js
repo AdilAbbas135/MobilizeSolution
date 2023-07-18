@@ -1,12 +1,10 @@
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Emailverification = (props) => {
   const navigate = useNavigate();
-
   const [sucess, setsucess] = useState(undefined);
   const [error, seterror] = useState(undefined);
   const user = new URLSearchParams(useLocation().search).get("user");

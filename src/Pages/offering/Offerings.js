@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineFieldTime, AiOutlineSearch } from "react-icons/ai";
-import { HiBookOpen, HiOutlineLocationMarker } from "react-icons/hi";
-import { IoMdLocate } from "react-icons/io";
+import { HiOutlineLocationMarker } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { FcHighPriority } from "react-icons/fc";
 import { useEffect } from "react";
@@ -22,7 +21,6 @@ import { Cities } from "../../data";
 const Offerings = () => {
   const dispatch = useDispatch();
   const [AllProblems, setAllProblems] = useState([]);
-  const [Locations, setLocations] = useState([]);
   const [loading, setloading] = useState(true);
   const [SearchData, setSearchData] = useState({});
   const [SearchBtnLoading, setSearchBtnLoading] = useState(false);
@@ -57,22 +55,6 @@ const Offerings = () => {
     FetchAllProblems();
     //eslint-disable-next-line
   }, []);
-
-  // const CheckLocation = async (problem) => {
-  //   const Find = await Locations.some((location) => {
-  //     console.log("i am calling location");
-  //     console.log(location);
-  //     return location.Location.toLowerCase() === problem.Location.toLowerCase();
-  //   });
-  //   console.log(Find);
-  //   if (Find === false) {
-  //     setLocations((oldArray) => [...oldArray, problem]);
-  //   }
-  // };
-  // useEffect(() => {
-  //   AllProblems.forEach(CheckLocation);
-  //   //eslint-disable-next-line
-  // }, [AllProblems]);
 
   const SearchProblem = async () => {
     setSearchBtnLoading(true);
